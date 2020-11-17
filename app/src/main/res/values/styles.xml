@@ -1,0 +1,63 @@
+<resources>
+    <style name="back_to_path">
+        <item name="android:textSize">@dimen/text_size_button_path_to_back</item>
+        <item name="android:textColor">@color/text_button_back</item>
+        <item name="fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="age_rating_style">
+        <item name="android:textSize">@dimen/text_size_age_rating</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="movie_title_style">
+        <item name="android:textSize">@dimen/text_size_movie_title</item>
+        <item name="android:textColor">@color/text_movie_title</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="tag_line_style">
+        <item name="android:textSize">@dimen/text_size_tag_line</item>
+        <item name="android:textColor">@color/text_tag_line</item>
+        <item name="fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="rating_bar_style">
+        <item name="colorControlNormal">@color/disabled_primary</item>
+        <item name="colorControlActivated">@color/accent</item>
+    </style>
+
+    <style name="review_count_style">
+        <item name="android:textSize">@dimen/text_size_reviews_count</item>
+        <item name="android:textColor">@color/disabled_primary</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="storyline_style">
+        <item name="android:textSize">@dimen/text_size_storyline</item>
+        <item name="android:textColor">@color/storyline</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="movie_description__style">
+        <item name="android:textSize">@dimen/text_size_movie_description</item>
+        <item name="android:textColor">@color/movie_description</item>
+        <item name="fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="text_cast_style">
+        <item name="android:textSize">@dimen/text_size_cast</item>
+        <item name="android:textColor">@color/text_cast</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="text_under_img_actor_style">
+        <item name="android:textSize">@dimen/text_under_img_actor</item>
+        <item name="android:textColor">@color/text_under_img_actor</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+
+
+</resources>

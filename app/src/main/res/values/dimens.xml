@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="medium_gap">16dp</dimen>
+    <dimen name="regular_gap">8dp</dimen>
+    <dimen name="small_gap">4dp</dimen>
+    <dimen name="poster_height">298dp</dimen>
+    <dimen name="text_size_button_path_to_back">12sp</dimen>
+    <dimen name="text_size_age_rating">12sp</dimen>
+    <dimen name="text_size_movie_title">40sp</dimen>
+    <dimen name="text_size_tag_line">14sp</dimen>
+    <dimen name="text_size_reviews_count">14sp</dimen>
+    <dimen name="text_size_storyline">14sp</dimen>
+    <dimen name="text_size_movie_description">14sp</dimen>
+    <dimen name="text_size_cast">14sp</dimen>
+    <dimen name="text_under_img_actor">12sp</dimen>
+</resources>
