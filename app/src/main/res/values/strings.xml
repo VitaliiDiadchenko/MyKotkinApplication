@@ -7,5 +7,6 @@
     <string name="age_rating">age_rating</string>
     <string name="text_cast">Cast</string>
     <string name="image_of_actor">image_of_actor</string>
+    <string name="gradient_above_image_poster">gradient_above_image_poster</string>
 
 </resources>

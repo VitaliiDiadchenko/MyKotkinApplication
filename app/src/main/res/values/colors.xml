@@ -9,13 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_color">#191926</color>
     <color name="text_button_back">#80FFFFFF</color>
-    <color name="text_movie_title">#ECECEC</color>
-    <color name="text_tag_line">#FF3466</color>
+    <color name="text_header_color">#ECECEC</color>
     <color name="accent">#FF3365</color>
     <color name="disabled_primary">#6D6D80</color>
-    <color name="storyline">#ECECEC</color>
-    <color name="movie_description">#ECECEC</color>
-    <color name="text_cast">#ECECEC</color>
     <color name="text_under_img_actor">#D8D8D8</color>
 
 </resources>
