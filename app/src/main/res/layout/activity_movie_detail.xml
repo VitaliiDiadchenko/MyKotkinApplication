@@ -51,29 +51,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/backgroundAgeRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/image_background_age_rating"
-            android:textDirection="@string/age_rating"
-            android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/movieTitle"
-            app:srcCompat="@drawable/img_rectangle" />
-
         <TextView
             android:id="@+id/ageRating"
             style="@style/bold_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/backgroundAgeRating"
-            app:layout_constraintEnd_toEndOf="@+id/backgroundAgeRating"
-            app:layout_constraintStart_toStartOf="@+id/backgroundAgeRating"
-            app:layout_constraintTop_toTopOf="@+id/backgroundAgeRating"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginBottom="8dp"
+            android:background="@color/background_color"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/movieTitle"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="13+" />
 
         <TextView
@@ -179,6 +168,10 @@
         <TextView
             android:id="@+id/text_under_img_first_actor"
             style="@style/text_under_img_actor_style"
+            android:gravity="start"
+            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="@+id/img_first_actor"
             app:layout_constraintStart_toStartOf="@+id/img_first_actor"
@@ -204,6 +197,10 @@
         <TextView
             android:id="@+id/text_under_img_second_actor"
             style="@style/text_under_img_actor_style"
+            android:gravity="start"
+            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/img_second_actor"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/img_second_actor"
@@ -230,6 +227,10 @@
         <TextView
             android:id="@+id/text_under_img_third_actor"
             style="@style/text_under_img_actor_style"
+            android:gravity="start"
+            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/img_third_actor"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/img_third_actor"
@@ -255,6 +256,10 @@
         <TextView
             android:id="@+id/text_under_img_fourth_actor"
             style="@style/text_under_img_actor_style"
+            android:gravity="start"
+            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/img_fourth_actor"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/img_fourth_actor"
