@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#191926</color>
+    <color name="text_button_back">#80FFFFFF</color>
+    <color name="text_header_color">#ECECEC</color>
+    <color name="accent">#FF3365</color>
+    <color name="disabled_primary">#6D6D80</color>
+    <color name="text_under_img_actor">#D8D8D8</color>
+
 </resources>
