@@ -8,5 +8,8 @@
     <string name="text_cast">Cast</string>
     <string name="image_of_actor">image_of_actor</string>
     <string name="gradient_above_image_poster">gradient_above_image_poster</string>
+    <string name="text_movies_list">Movies list</string>
+    <string name="img_small_poster">img_small_poster</string>
+    <string name="icon_like">icon_like</string>
 
 </resources>

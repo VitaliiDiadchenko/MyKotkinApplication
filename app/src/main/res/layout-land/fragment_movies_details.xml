@@ -7,7 +7,7 @@
     android:background="@color/background_color"
 
     android:orientation="vertical"
-    tools:context=".MovieDetailActivity">
+    tools:context=".FragmentMoviesDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_orig" />
 
+
         <ImageView
             android:id="@+id/view_gradient"
             android:layout_width="match_parent"
@@ -34,10 +35,11 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/image_poster"
             app:layout_constraintEnd_toEndOf="@+id/image_poster"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/image_poster"
             app:layout_constraintTop_toTopOf="@+id/image_poster"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/img_mask" />
-
 
         <Button
             android:id="@+id/button_back"
