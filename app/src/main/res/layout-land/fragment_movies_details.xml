@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-
-    android:orientation="vertical"
-    tools:context=".MovieDetailActivity">
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,19 +23,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_orig" />
 
-        <ImageView
+
+        <View
             android:id="@+id/view_gradient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/gradient_above_image_poster"
-            android:scaleType="centerCrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/image_poster"
             app:layout_constraintEnd_toEndOf="@+id/image_poster"
             app:layout_constraintStart_toStartOf="@+id/image_poster"
             app:layout_constraintTop_toTopOf="@+id/image_poster"
-            app:srcCompat="@drawable/img_mask" />
-
+            android:background="@drawable/ic_gradient_detail_poster"/>
 
         <Button
             android:id="@+id/button_back"
@@ -269,4 +264,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
