@@ -1,7 +1,6 @@
 package com.vitaliidiadchenko.mykotkinapplication
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +30,7 @@ class FragmentMoviesDetails : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is FragmentListener) {
-            listener = context
-        }
+        listener = context as? FragmentListener
     }
 
     override fun onDetach() {

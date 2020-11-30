@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FragmentMoviesList">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -54,17 +53,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/img_small_poster" />
 
-                <ImageView
+                <View
                     android:id="@+id/card_poster_gradient"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/gradient_above_image_poster"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/img_card_mask" />
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_gradient_card"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_poster"
+                    app:layout_constraintEnd_toEndOf="@+id/card_poster"
+                    app:layout_constraintStart_toStartOf="@+id/card_poster"
+                    app:layout_constraintTop_toTopOf="@+id/card_poster" />
 
                 <TextView
                     android:id="@+id/card_age_rating"
