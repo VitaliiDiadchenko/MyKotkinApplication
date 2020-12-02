@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MyKotkinApplication</string>
+    <string name="background_cover">Background_cover</string>
+    <string name="label_back">Back</string>
+    <string name="path_to_back">path_to_back</string>
+    <string name="image_background_age_rating">image_background_age_rating</string>
+    <string name="age_rating">age_rating</string>
+    <string name="text_cast">Cast</string>
+    <string name="image_of_actor">image_of_actor</string>
+    <string name="gradient_above_image_poster">gradient_above_image_poster</string>
+    <string name="text_movies_list">Movies list</string>
+    <string name="img_small_poster">img_small_poster</string>
+    <string name="icon_like">icon_like</string>
 </resources>
