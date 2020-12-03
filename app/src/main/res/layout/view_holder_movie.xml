@@ -60,7 +60,7 @@
             android:id="@+id/img_like"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_like"
+            app:srcCompat="@drawable/img_empty_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -68,6 +68,19 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/icon_like"
             android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/card_tag_line"
+            style="@style/tag_line_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="2dp"
+            android:textSize="8sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/card_text_review"
+            tools:text="Action, Adventure, Fantasy"
+            tools:ignore="SmallSp" />
 
 
         <RatingBar

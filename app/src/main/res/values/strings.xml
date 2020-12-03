@@ -11,4 +11,32 @@
     <string name="text_movies_list">Movies list</string>
     <string name="img_small_poster">img_small_poster</string>
     <string name="icon_like">icon_like</string>
+    
+    //resources by first movie's card
+    <string name="first_movie_card_age_rating">13+</string>
+    <string name="first_movie_card_tag_line">Action, Adventure, Fantasy</string>
+    <string name="first_movie_card_review">125 REVIEWS</string>
+    <string name="first_movie_card_title">Avengers:End Game</string>
+    <string name="first_movie_card_run_time">137 min</string>
+
+    //resources by second movie's card
+    <string name="second_movie_card_age_rating">16+</string>
+    <string name="second_movie_card_tag_line">Action, Sci-Fi, Thriller</string>
+    <string name="second_movie_card_review">98 Reviews</string>
+    <string name="second_movie_card_title">Tenet</string>
+    <string name="second_movie_card_run_time">97 min</string>
+
+    //resources by third movie's card
+    <string name="third_movie_card_age_rating">13+</string>
+    <string name="third_movie_card_tag_line">Action, Adventure, Sci-Fi</string>
+    <string name="third_movie_card_review">38 Reviews</string>
+    <string name="third_movie_card_title">Black Widow</string>
+    <string name="third_movie_card_run_time">102 min</string>
+
+    //resources by fourth movie's card
+    <string name="fourth_movie_card_age_rating">13+</string>
+    <string name="fourth_movie_card_tag_line">Action, Adventure, Fantasy</string>
+    <string name="fourth_movie_card_review">74 Reviews</string>
+    <string name="fourth_movie_card_title">Wonder Woman 1984</string>
+    <string name="fourth_movie_card_run_time">120 min</string>
 </resources>
