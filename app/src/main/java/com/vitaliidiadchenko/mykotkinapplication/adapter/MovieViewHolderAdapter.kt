@@ -11,10 +11,11 @@ import com.bumptech.glide.Glide
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
-class MovieViewHolderAdapter : RecyclerView.Adapter<MovieViewHolderAdapter.MovieViewHolder>() {
+class MovieViewHolderAdapter(
+    private var onPosterCardClickListener: OnPosterCardClickListener)
+    : RecyclerView.Adapter<MovieViewHolder>() {
 
-    private val movies = arrayListOf<Movie>()
-
+    private var movies = listOf<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(
@@ -27,39 +28,46 @@ class MovieViewHolderAdapter : RecyclerView.Adapter<MovieViewHolderAdapter.Movie
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-
-    }
-
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val ageRating = itemView.findViewById<TextView>(R.id.card_age_rating)
-        private val poster = itemView.findViewById<ImageView>(R.id.card_poster)
-        private val title = itemView.findViewById<TextView>(R.id.card_movie_title)
-        private val like = itemView.findViewById<ImageView>(R.id.img_like)
-        private val rating = itemView.findViewById<RatingBar>(R.id.card_rating_bar)
-        private val review = itemView.findViewById<TextView>(R.id.card_text_review)
-        private val tagLine = itemView.findViewById<TextView>(R.id.card_tag_line)
-        private val runTime = itemView.findViewById<TextView>(R.id.run_time_of_the_film)
-
-        fun bindMovies(movie: Movie) {
-
-            Glide.with(context).load(movie.poster).into(poster)
-
-            if (movie.like) {
-                Glide.with(context).load(R.drawable.img_like).into(like)
-            } else {
-                Glide.with(context).load(R.drawable.img_empty_like).into(like)
-            }
-
-            ageRating.text = movie.ageRating
-            title.text = movie.title
-            rating.rating = movie.rating.toFloat()
-            review.text = movie.review
-            tagLine.text = movie.tagLine
-            runTime.text = movie.runTime
+        holder.onBind(movies[position])
+        holder.itemView.setOnClickListener {
+            onPosterCardClickListener.onClick(movies[position])
         }
     }
 
+    fun bindMovies(newMovies: List<Movie>) {
+        movies = newMovies
+        notifyDataSetChanged()
+    }
+}
+
+class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    private val ageRating = itemView.findViewById<TextView>(R.id.card_age_rating)
+    private val poster = itemView.findViewById<ImageView>(R.id.card_poster)
+    private val title = itemView.findViewById<TextView>(R.id.card_movie_title)
+    private val like = itemView.findViewById<ImageView>(R.id.img_like)
+    private val rating = itemView.findViewById<RatingBar>(R.id.card_rating_bar)
+    private val review = itemView.findViewById<TextView>(R.id.card_text_review)
+    private val tagLine = itemView.findViewById<TextView>(R.id.card_tag_line)
+    private val runTime = itemView.findViewById<TextView>(R.id.run_time_of_the_film)
+
+    fun onBind(movie: Movie) {
+
+        Glide.with(context).load(movie.poster).into(poster)
+
+        if (movie.like) {
+            Glide.with(context).load(R.drawable.img_like).into(like)
+        } else {
+            Glide.with(context).load(R.drawable.img_empty_like).into(like)
+        }
+
+        ageRating.text = movie.ageRating
+        title.text = movie.title
+        rating.rating = movie.rating.toFloat()
+        review.text = movie.review
+        tagLine.text = movie.tagLine
+        runTime.text = movie.runTime
+    }
 }
 
 interface OnPosterCardClickListener {
