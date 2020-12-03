@@ -11,8 +11,6 @@
     app:strokeWidth="1dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="12dp"
-    android:layout_marginTop="18dp"
     android:padding="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,15 +20,16 @@
 
         <ImageView
             android:id="@+id/card_poster"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_small_poster"
-            android:layout_width="166dp"
-            android:layout_height="246dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@string/img_small_poster"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_small_poster" />
 
         <View
             android:id="@+id/card_poster_gradient"
