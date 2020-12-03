@@ -11,9 +11,7 @@ import com.bumptech.glide.Glide
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
-class MovieViewHolderAdapter(
-    private var onPosterCardClickListener: OnPosterCardClickListener)
-    : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieViewHolderAdapter(private var onPosterCardClickListener: OnPosterCardClickListener) : RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies = listOf<Movie>()
 
@@ -23,9 +21,7 @@ class MovieViewHolderAdapter(
         )
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount(): Int = movies.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.onBind(movies[position])
@@ -70,9 +66,9 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 }
 
-interface OnPosterCardClickListener {
-    fun onClick(movie: Movie)
-}
-
 private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
+
+interface OnPosterCardClickListener {
+        fun onClick(movie: Movie)
+    }
