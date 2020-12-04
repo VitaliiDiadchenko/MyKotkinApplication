@@ -18,7 +18,7 @@ class FragmentMoviesDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_movies_details, container, false)
+        val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
 
         view?.findViewById<Button>(R.id.button_back)?.apply {
             setOnClickListener{
