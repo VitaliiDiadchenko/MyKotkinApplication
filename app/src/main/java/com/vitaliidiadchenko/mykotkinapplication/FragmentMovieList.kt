@@ -31,6 +31,7 @@ class FragmentMovieList : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view_list_movies)
         recyclerView?.adapter = MovieViewHolderAdapter(movieListener)
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
+        recyclerView?.hasFixedSize()
         updateData()
     }
 

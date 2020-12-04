@@ -144,109 +144,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description_of_movie" />
 
-        <ImageView
-            android:id="@+id/img_first_actor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_list_actors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
             android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginTop="7dp"
-            android:contentDescription="@string/image_of_actor"
-            app:layout_constraintEnd_toStartOf="@+id/img_second_actor"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_cast"
-            app:srcCompat="@drawable/img_downey" />
-
-        <TextView
-            android:id="@+id/text_under_img_first_actor"
-            style="@style/text_under_img_actor_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="@+id/img_first_actor"
-            app:layout_constraintStart_toStartOf="@+id/img_first_actor"
-            app:layout_constraintTop_toBottomOf="@+id/img_first_actor"
-            tools:text="Robert Downey Jr." />
-
-        <ImageView
-            android:id="@+id/img_second_actor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp"
-            android:contentDescription="@string/image_of_actor"
-            app:layout_constraintEnd_toStartOf="@+id/img_third_actor"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/img_first_actor"
-            app:layout_constraintTop_toBottomOf="@+id/text_cast"
-            app:srcCompat="@drawable/img_evans" />
-
-        <TextView
-            android:id="@+id/text_under_img_second_actor"
-            style="@style/text_under_img_actor_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="@+id/img_second_actor"
-            app:layout_constraintStart_toStartOf="@+id/img_second_actor"
-            app:layout_constraintTop_toBottomOf="@+id/img_second_actor"
-            tools:ignore="MissingConstraints"
-            tools:text="Chris Evans" />
-
-        <ImageView
-            android:id="@+id/img_third_actor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp"
-            android:contentDescription="@string/image_of_actor"
-            app:layout_constraintEnd_toStartOf="@+id/img_fourth_actor"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/img_second_actor"
-            app:layout_constraintTop_toBottomOf="@+id/text_cast"
-            app:srcCompat="@drawable/img_ruffalo" />
-
-        <TextView
-            android:id="@+id/text_under_img_third_actor"
-            style="@style/text_under_img_actor_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="@+id/img_third_actor"
-            app:layout_constraintStart_toStartOf="@+id/img_third_actor"
-            app:layout_constraintTop_toBottomOf="@+id/img_third_actor"
-            tools:ignore="MissingConstraints"
-            tools:text="Mark Ruffalo" />
-
-        <ImageView
-            android:id="@+id/img_fourth_actor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp"
             android:layout_marginEnd="@dimen/layout_gap"
-            android:contentDescription="@string/image_of_actor"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/img_third_actor"
-            app:layout_constraintTop_toBottomOf="@+id/text_cast"
-            app:srcCompat="@drawable/img_hemsworth" />
-
-        <TextView
-            android:id="@+id/text_under_img_fourth_actor"
-            style="@style/text_under_img_actor_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="@+id/img_fourth_actor"
-            app:layout_constraintStart_toStartOf="@+id/img_fourth_actor"
-            app:layout_constraintTop_toBottomOf="@+id/img_fourth_actor"
-            tools:ignore="MissingConstraints"
-            tools:text="Chris Hemsworth" />
+            app:layout_constraintTop_toBottomOf="@+id/text_cast"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
