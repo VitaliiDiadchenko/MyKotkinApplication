@@ -55,9 +55,9 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         ageRating.text = movie.ageRating
         title.text = movie.title
         rating.rating = movie.rating.toFloat()
-        review.text = context.resources.getQuantityString(R.plurals.review, movie.review)
+        review.text = context.resources.getQuantityString(R.plurals.review, movie.review, movie.review)
         tagLine.text = movie.tagLine
-        runTime.text = context.resources.getQuantityString(R.plurals.run_time, movie.runTime)
+        runTime.text = context.resources.getQuantityString(R.plurals.run_time, movie.runTime, movie.runTime)
     }
 }
 
