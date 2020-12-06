@@ -12,4 +12,13 @@
     <string name="img_small_poster">img_small_poster</string>
     <string name="icon_like">icon_like</string>
 
+    <plurals name="review">
+        <item quantity="one">%d review</item>
+        <item quantity="other">%d reviews</item>
+    </plurals>
+
+    <plurals name="run_time">
+        <item quantity="other">%d min</item>
+    </plurals>
+
 </resources>

@@ -51,15 +51,13 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun onBind(movie: Movie) {
 
         Glide.with(context).load(movie.poster).into(poster)
-
         like.setImageResource(if (movie.like) R.drawable.ic_like else R.drawable.ic_empty_like)
-
         ageRating.text = movie.ageRating
         title.text = movie.title
         rating.rating = movie.rating.toFloat()
-        review.text = movie.review
+        review.text = context.resources.getQuantityString(R.plurals.review, movie.review)
         tagLine.text = movie.tagLine
-        runTime.text = movie.runTime
+        runTime.text = context.resources.getQuantityString(R.plurals.run_time, movie.runTime)
     }
 }
 

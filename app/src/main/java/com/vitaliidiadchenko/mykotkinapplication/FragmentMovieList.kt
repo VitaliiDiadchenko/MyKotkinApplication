@@ -60,20 +60,20 @@ class FragmentMovieList : Fragment() {
     companion object {
         private val movie1: Movie = Movie(
             "13+", R.drawable.img_small_poster, "Avengers:End Game", false,
-            4, "125 REVIEWS", "Action, Adventure, Fantasy", "137 min"
+            4, 125, "Action, Adventure, Fantasy", 137
         )
         private val movie2: Movie = Movie(
             "16+", R.drawable.img_small_poster2, "Tenet", true,
-            5, "98 Reviews", "Action, Sci-Fi, Thriller", "97 min"
+            5, 98, "Action, Sci-Fi, Thriller", 97
         )
         private val movie3: Movie = Movie(
             "13+", R.drawable.img_small_poster3, "Black Widow", false,
-            4, "38 Reviews", "Action, Adventure, Sci-Fi", "102 min"
+            4, 38, "Action, Adventure, Sci-Fi", 102
         )
         private val movie4: Movie = Movie(
             "13+", R.drawable.img_small_poster4, "Wonder Woman 1984", false,
-            5, "74 Reviews", "Action, Adventure, Fantasy", "120 min"
+            5, 74, "Action, Adventure, Fantasy", 120
         )
-        private var moviesList = listOf<Movie>(movie1, movie2, movie3, movie4)
+        private var moviesList = listOf(movie1, movie2, movie3, movie4)
     }
 }

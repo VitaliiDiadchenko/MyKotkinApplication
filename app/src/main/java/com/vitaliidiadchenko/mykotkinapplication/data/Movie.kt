@@ -6,7 +6,7 @@ data class Movie(
     val title: String,
     val like: Boolean,
     val rating: Int,
-    val review: String,
+    val review: Int,
     val tagLine: String,
-    val runTime: String
+    val runTime: Int
     )
