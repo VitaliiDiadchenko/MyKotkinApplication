@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
-class MovieViewHolderAdapter(private var onPosterCardClickListener: OnPosterCardClickListener) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieViewHolderAdapter(private var onPosterCardClickListener: OnPosterCardClickListener) :
+    RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies = listOf<Movie>()
 
@@ -51,11 +52,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         Glide.with(context).load(movie.poster).into(poster)
 
-        if (movie.like) {
-            Glide.with(context).load(R.drawable.img_like).into(like)
-        } else {
-            Glide.with(context).load(R.drawable.img_empty_like).into(like)
-        }
+        like.setImageResource(if (movie.like) R.drawable.ic_like else R.drawable.ic_empty_like)
 
         ageRating.text = movie.ageRating
         title.text = movie.title
@@ -70,5 +67,5 @@ private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
 
 interface OnPosterCardClickListener {
-        fun onClick(movie: Movie)
-    }
+    fun onClick(movie: Movie)
+}

@@ -34,7 +34,6 @@ class ActorViewHolderAdapter : RecyclerView.Adapter<ActorViewHolder>() {
     }
 }
 
-
 class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val avatar = itemView.findViewById<ImageView>(R.id.img_actor)
     private val name = itemView.findViewById<TextView>(R.id.text_under_img_first_actor)
