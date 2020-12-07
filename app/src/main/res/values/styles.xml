@@ -34,7 +34,7 @@
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="rating_bar_style" parent="Widget.AppCompat.RatingBar.Small">
+    <style name="rating_bar_style">
         <item name="ratingBarStyle">?android:attr/ratingBarStyleSmall</item>
         <item name="colorControlNormal">@color/disabled_primary</item>
         <item name="colorControlActivated">@color/accent</item>
@@ -56,5 +56,4 @@
         <item name="android:textColor">@color/text_under_img_actor</item>
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
-
 </resources>
