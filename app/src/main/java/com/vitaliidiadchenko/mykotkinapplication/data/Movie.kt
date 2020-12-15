@@ -1,6 +1,5 @@
 package com.vitaliidiadchenko.mykotkinapplication.data
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
@@ -17,11 +16,4 @@ data class Movie(
     val genres: List<Genre>,
     val actors: List<Actor>,
     val like: Boolean = false
-) : Parcelable {
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("Not yet implemented")
-    }
-    override fun describeContents(): Int {
-        TODO("Not yet implemented")
-    }
-}
+) : Parcelable
