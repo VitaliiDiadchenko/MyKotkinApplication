@@ -11,12 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieViewHolderAdapter
 import com.vitaliidiadchenko.mykotkinapplication.adapter.OnPosterCardClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
+import com.vitaliidiadchenko.mykotkinapplication.data.loadMovies
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FragmentMovieList : Fragment() {
 
     private var recyclerView: RecyclerView? = null
-
     private var listener: FragmentListener? = null
+    private var movies: List<Movie>? = null
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +37,7 @@ class FragmentMovieList : Fragment() {
         recyclerView?.adapter = MovieViewHolderAdapter(movieListener)
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
         recyclerView?.hasFixedSize()
-        updateData()
+        setMovies()
     }
 
     override fun onAttach(context: Context) {
@@ -47,17 +52,24 @@ class FragmentMovieList : Fragment() {
 
     private val movieListener = object : OnPosterCardClickListener {
         override fun onClick(movie: Movie) {
-            listener?.goToFragmentMoviesDetails()
+            listener?.goToFragmentMoviesDetails(movie)
+        }
+    }
+
+    private fun setMovies() {
+        scope.launch {
+            movies = context?.let { loadMovies(it)}
+            updateData()
         }
     }
 
     private fun updateData() {
         (recyclerView?.adapter as? MovieViewHolderAdapter)?.apply {
-            bindMovies(moviesList)
+            movies?.let{bindMovies(it)}
         }
     }
 
-    companion object {
+    /*companion object {
         private val movie1: Movie = Movie(
             "13+", R.drawable.img_small_poster, "Avengers:End Game", false,
             4, 125, "Action, Adventure, Fantasy", 137
@@ -75,5 +87,15 @@ class FragmentMovieList : Fragment() {
             5, 74, "Action, Adventure, Fantasy", 120
         )
         private var moviesList = listOf(movie1, movie2, movie3, movie4)
-    }
+    }*/
+
+    /*companion object{
+        fun newInstance(movie: Movie): FragmentMovieList {
+            val args = Bundle()
+            args.putInt("movieId", movie.id)
+            val fragment = FragmentMovieList()
+            fragment.arguments = args
+            return fragment
+        }
+    }*/
 }

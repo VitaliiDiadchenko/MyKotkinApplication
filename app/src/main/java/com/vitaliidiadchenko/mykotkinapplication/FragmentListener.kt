@@ -1,6 +1,8 @@
 package com.vitaliidiadchenko.mykotkinapplication
 
+import com.vitaliidiadchenko.mykotkinapplication.data.Movie
+
 interface FragmentListener {
-    fun goToFragmentMoviesDetails()
+    fun goToFragmentMoviesDetails(movie: Movie)
     fun goToFragmentMoviesList()
 }
