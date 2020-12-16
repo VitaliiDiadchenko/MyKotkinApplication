@@ -15,10 +15,9 @@ class MainActivity : AppCompatActivity(), FragmentListener {
     }
 
     override fun goToFragmentMoviesDetails(movie: Movie) {
-        val bundle = Bundle().apply { putParcelable("movie", movie) }
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .add(R.id.main_container, FragmentMovieDetail().apply { arguments = bundle })
+            .add(R.id.main_container, FragmentMovieDetail.newInstance(movie))
             .commit()
     }
 

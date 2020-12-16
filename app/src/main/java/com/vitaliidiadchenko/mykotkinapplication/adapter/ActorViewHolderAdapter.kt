@@ -13,11 +13,6 @@ import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 
 class ActorViewHolderAdapter : RecyclerView.Adapter<ActorViewHolder>() {
 
-    private val imageOption = RequestOptions()
-        .placeholder(R.drawable.ic_avatar_placeholder)
-        .fallback(R.drawable.ic_avatar_placeholder)
-        .circleCrop()
-
     private var listActors = listOf<Actor>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
@@ -30,7 +25,7 @@ class ActorViewHolderAdapter : RecyclerView.Adapter<ActorViewHolder>() {
     override fun getItemCount(): Int = listActors.size
 
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
-        holder.onBind(imageOption, listActors[position])
+        holder.onBind(listActors[position])
 
     }
 
@@ -44,8 +39,13 @@ class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val avatar = itemView.findViewById<ImageView>(R.id.img_actor)
     private val name = itemView.findViewById<TextView>(R.id.text_under_img_first_actor)
 
-    fun onBind(options: RequestOptions, actor: Actor) {
-        Glide.with(context).load(actor.picture).apply(options).into(avatar)
+    fun onBind(actor: Actor) {
+
+        val imageOption = RequestOptions()
+            .placeholder(R.drawable.ic_avatar_placeholder)
+            .fallback(R.drawable.ic_avatar_placeholder)
+            .circleCrop()
+        Glide.with(context).load(actor.picture).apply(imageOption).into(avatar)
         name.text = actor.name
     }
 

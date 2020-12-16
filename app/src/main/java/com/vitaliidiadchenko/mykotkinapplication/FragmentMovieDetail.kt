@@ -2,6 +2,7 @@ package com.vitaliidiadchenko.mykotkinapplication
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,12 +41,14 @@ class FragmentMovieDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movie: Movie? = requireArguments().getParcelable(Movie::class.java.simpleName)
-        movie?.let{ updateData(it) }
-        /*recyclerView = view.findViewById(R.id.recycler_view_list_actors)
+        recyclerView = view.findViewById(R.id.recycler_view_list_actors)
         recyclerView?.adapter = ActorViewHolderAdapter()
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        recyclerView?.hasFixedSize()*/
+        recyclerView?.hasFixedSize()
+        arguments?.getParcelable<Movie>("movie")?.let { movie ->
+            setupView(movie)
+            Log.i("movie", movie.id.toString())
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -58,7 +61,7 @@ class FragmentMovieDetail : Fragment() {
         listener = null
     }
 
-    private fun updateData(movie: Movie) {
+    private fun setupView(movie: Movie) {
         view?.run {
             // set backdrop poster
             val backdrop = findViewById<ImageView>(R.id.image_poster)
@@ -81,16 +84,13 @@ class FragmentMovieDetail : Fragment() {
                 ageRating.visibility = View.INVISIBLE
             }
             //set actor's images to recyclerView
-            val recyclerView = findViewById<RecyclerView>(R.id.recycler_view_list_actors)
-            recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             val actors = movie.actors
-
             if (actors.isNotEmpty()) {
-                (recyclerView.adapter as ActorViewHolderAdapter).apply {
+                (recyclerView?.adapter as ActorViewHolderAdapter).apply {
                     bindActors(actors)
                 }
             } else {
-                recyclerView.visibility = View.INVISIBLE
+                recyclerView?.visibility = View.INVISIBLE
             }
         }
     }
@@ -102,5 +102,6 @@ class FragmentMovieDetail : Fragment() {
                 args.putParcelable("movie", movie)
                 arguments = args
             }
+
     }
 }
