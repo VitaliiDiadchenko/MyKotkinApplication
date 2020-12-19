@@ -41,7 +41,6 @@ class FragmentMovieDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.recycler_view_list_actors)
         recyclerView?.adapter = ActorViewHolderAdapter()
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView?.hasFixedSize()
@@ -62,7 +61,7 @@ class FragmentMovieDetail : Fragment() {
     }
 
     private fun setupView(movie: Movie) {
-        view?.run {
+        view?.apply {
             // set backdrop poster
             val backdrop = findViewById<ImageView>(R.id.image_poster)
             Glide.with(context)
@@ -77,20 +76,21 @@ class FragmentMovieDetail : Fragment() {
             findViewById<TextView>(R.id.textReview).text =
                 resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
             //set ageRating
-            val ageRating = findViewById<TextView>(R.id.ageRating)
             if (movie.adult) {
-                ageRating.text = resources.getString(R.string.adult_age_rating)
-            } else {
-                ageRating.visibility = View.INVISIBLE
+                with(findViewById<TextView>(R.id.ageRating)) {
+                    text = resources.getString(R.string.adult_age_rating)
+                    visibility = View.VISIBLE
+                }
             }
             //set actor's images to recyclerView
             val actors = movie.actors
             if (actors.isNotEmpty()) {
-                (recyclerView?.adapter as ActorViewHolderAdapter).apply {
-                    bindActors(actors)
+                with(findViewById<RecyclerView>(R.id.recycler_view_list_actors)) {
+                    (recyclerView?.adapter as ActorViewHolderAdapter).apply {
+                        bindActors(actors)
+                        visibility = View.VISIBLE
+                    }
                 }
-            } else {
-                recyclerView?.visibility = View.INVISIBLE
             }
         }
     }

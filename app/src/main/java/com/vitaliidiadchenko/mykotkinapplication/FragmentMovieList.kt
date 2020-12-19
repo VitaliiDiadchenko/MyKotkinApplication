@@ -20,7 +20,6 @@ class FragmentMovieList : Fragment() {
 
     private var recyclerView: RecyclerView? = null
     private var listener: FragmentListener? = null
-    private var movies: List<Movie>? = null
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(
@@ -58,44 +57,14 @@ class FragmentMovieList : Fragment() {
 
     private fun setMovies() {
         scope.launch {
-            movies = context?.let { loadMovies(it)}
-            updateData()
+            val movies = loadMovies(requireContext())
+            updateData(movies)
         }
     }
 
-    private fun updateData() {
+    private fun updateData(movies : List<Movie>) {
         (recyclerView?.adapter as? MovieViewHolderAdapter)?.apply {
-            movies?.let{bindMovies(it)}
+            movies.let{bindMovies(it)}
         }
     }
-
-    /*companion object {
-        private val movie1: Movie = Movie(
-            "13+", R.drawable.img_small_poster, "Avengers:End Game", false,
-            4, 125, "Action, Adventure, Fantasy", 137
-        )
-        private val movie2: Movie = Movie(
-            "16+", R.drawable.img_small_poster2, "Tenet", true,
-            5, 98, "Action, Sci-Fi, Thriller", 97
-        )
-        private val movie3: Movie = Movie(
-            "13+", R.drawable.img_small_poster3, "Black Widow", false,
-            4, 38, "Action, Adventure, Sci-Fi", 102
-        )
-        private val movie4: Movie = Movie(
-            "13+", R.drawable.img_small_poster4, "Wonder Woman 1984", false,
-            5, 74, "Action, Adventure, Fantasy", 120
-        )
-        private var moviesList = listOf(movie1, movie2, movie3, movie4)
-    }*/
-
-    /*companion object{
-        fun newInstance(movie: Movie): FragmentMovieList {
-            val args = Bundle()
-            args.putInt("movieId", movie.id)
-            val fragment = FragmentMovieList()
-            fragment.arguments = args
-            return fragment
-        }
-    }*/
 }
