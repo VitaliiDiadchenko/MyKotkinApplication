@@ -1,2 +1,2 @@
-# MyFirstKotkinApplication
+# MyFirstKotlinApplication
 Telegram @vitaliy_dyadchenko

@@ -11,6 +11,7 @@
     <string name="text_movies_list">Movies list</string>
     <string name="img_small_poster">img_small_poster</string>
     <string name="icon_like">icon_like</string>
+    <string name="adult_age_rating">18+</string>
 
     <plurals name="review">
         <item quantity="one">%d review</item>

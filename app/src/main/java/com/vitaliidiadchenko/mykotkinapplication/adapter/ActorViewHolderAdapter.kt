@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 
@@ -39,7 +40,12 @@ class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val name = itemView.findViewById<TextView>(R.id.text_under_img_first_actor)
 
     fun onBind(actor: Actor) {
-        Glide.with(context).load(actor.avatar).into(avatar)
+
+        val imageOption = RequestOptions()
+            .placeholder(R.drawable.ic_avatar_placeholder)
+            .fallback(R.drawable.ic_avatar_placeholder)
+            .circleCrop()
+        Glide.with(context).load(actor.picture).apply(imageOption).into(avatar)
         name.text = actor.name
     }
 

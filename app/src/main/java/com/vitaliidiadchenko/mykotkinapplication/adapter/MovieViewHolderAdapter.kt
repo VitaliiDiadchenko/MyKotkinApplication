@@ -52,12 +52,14 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         Glide.with(context).load(movie.poster).into(poster)
         like.setImageResource(if (movie.like) R.drawable.ic_like else R.drawable.ic_empty_like)
-        ageRating.text = movie.ageRating
+        if (movie.adult) {
+            ageRating.text = itemView.resources.getString(R.string.adult_age_rating)
+        } else {ageRating.visibility = View.INVISIBLE} //json doesn't have ageRating
         title.text = movie.title
-        rating.rating = movie.rating.toFloat()
-        review.text = context.resources.getQuantityString(R.plurals.review, movie.review, movie.review)
-        tagLine.text = movie.tagLine
-        runTime.text = context.resources.getQuantityString(R.plurals.run_time, movie.runTime, movie.runTime)
+        rating.rating = (movie.ratings / 2)
+        review.text = context.resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
+        tagLine.text = movie.genres.joinToString(", ") {it.name}
+        runTime.text = context.resources.getQuantityString(R.plurals.run_time, movie.runtime, movie.runtime)
     }
 }
 

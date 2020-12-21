@@ -1,12 +1,19 @@
 package com.vitaliidiadchenko.mykotkinapplication.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movie(
-    val ageRating: String,
-    val poster: Int,
+    val id: Int,
     val title: String,
-    val like: Boolean,
-    val rating: Int,
-    val review: Int,
-    val tagLine: String,
-    val runTime: Int
-    )
+    val overview: String,
+    val poster: String,
+    val backdrop: String,
+    val ratings: Float,
+    val adult: Boolean,
+    val runtime: Int,
+    val genres: List<Genre>,
+    val actors: List<Actor>,
+    val like: Boolean = false
+) : Parcelable
