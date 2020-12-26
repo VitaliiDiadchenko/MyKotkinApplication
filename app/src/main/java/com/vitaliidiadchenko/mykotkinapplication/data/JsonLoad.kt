@@ -1,6 +1,7 @@
 package com.vitaliidiadchenko.mykotkinapplication.data
 
 import android.content.Context
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
@@ -66,7 +67,7 @@ internal fun parseActors(data: String): List<Actor> {
     return jsonActors.map { Actor(id = it.id, name = it.name, picture = it.profilePicture) }
 }
 
-internal suspend fun loadMovies(context: Context): List<Movie> = withContext(Dispatchers.IO) {
+internal suspend fun loadMovies(context: Context, dispatcher: CoroutineDispatcher): List<Movie> = withContext(dispatcher) {
     val genresMap = loadGenres(context)
     val actorsMap = loadActors(context)
 
