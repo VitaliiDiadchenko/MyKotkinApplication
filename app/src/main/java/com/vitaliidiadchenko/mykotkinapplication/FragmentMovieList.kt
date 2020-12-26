@@ -13,20 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieViewHolderAdapter
 import com.vitaliidiadchenko.mykotkinapplication.adapter.OnPosterCardClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
-import com.vitaliidiadchenko.mykotkinapplication.data.loadMovies
 import com.vitaliidiadchenko.mykotkinapplication.viewModel.State
 import com.vitaliidiadchenko.mykotkinapplication.viewModel.ViewModelMovieList
 import com.vitaliidiadchenko.mykotkinapplication.viewModel.ViewModelMovieListFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class FragmentMovieList : Fragment() {
 
     private var recyclerView: RecyclerView? = null
     private var progressBar: ProgressBar? = null
     private var listener: FragmentListener? = null
-    private val scope = CoroutineScope(Dispatchers.IO)
     private lateinit var viewModel: ViewModelMovieList
 
     override fun onCreateView(
@@ -75,7 +70,7 @@ class FragmentMovieList : Fragment() {
 
     private fun updateData(movies : List<Movie>) {
         (recyclerView?.adapter as? MovieViewHolderAdapter)?.apply {
-            movies.let{bindMovies(it)}
+            bindMovies(movies)
         }
     }
 

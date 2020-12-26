@@ -2,7 +2,6 @@ package com.vitaliidiadchenko.mykotkinapplication
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,20 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorViewHolderAdapter
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
+import com.vitaliidiadchenko.mykotkinapplication.viewModel.ViewModelMovieDetail
+import com.vitaliidiadchenko.mykotkinapplication.viewModel.ViewModelMovieDetailFactory
 
 class FragmentMovieDetail : Fragment() {
 
     private var listener: FragmentListener? = null
     private var recyclerView: RecyclerView? = null
+    private lateinit var viewModel: ViewModelMovieDetail
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +48,9 @@ class FragmentMovieDetail : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView?.hasFixedSize()
         arguments?.getParcelable<Movie>("movie")?.let { movie ->
-            setupView(movie)
-            Log.i("movie", movie.id.toString())
+            val viewModelFactory = ViewModelMovieDetailFactory(movie)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(ViewModelMovieDetail::class.java)
+            setMovie()
         }
     }
 
@@ -58,6 +62,12 @@ class FragmentMovieDetail : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
+    }
+
+    private fun setMovie(){
+        viewModel.setupMovie.observe(viewLifecycleOwner, {
+            setupView(it)
+        })
     }
 
     private fun setupView(movie: Movie) {
