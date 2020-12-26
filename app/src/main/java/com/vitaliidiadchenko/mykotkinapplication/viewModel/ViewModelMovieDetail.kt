@@ -8,7 +8,7 @@ import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 class ViewModelMovieDetail(movie: Movie) : ViewModel() {
 
     private val _setMovie = MutableLiveData<Movie>()
-    val setupMovie: LiveData<Movie> = _setMovie
+    val setMovie: LiveData<Movie> get() = _setMovie
 
     init {
         _setMovie.postValue(movie)

@@ -65,7 +65,7 @@ class FragmentMovieDetail : Fragment() {
     }
 
     private fun setMovie(){
-        viewModel.setupMovie.observe(viewLifecycleOwner, {
+        viewModel.setMovie.observe(viewLifecycleOwner, {
             setupView(it)
         })
     }
