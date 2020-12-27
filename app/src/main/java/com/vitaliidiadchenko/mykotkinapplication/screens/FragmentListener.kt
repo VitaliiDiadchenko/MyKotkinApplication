@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication
+package com.vitaliidiadchenko.mykotkinapplication.screens
 
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 

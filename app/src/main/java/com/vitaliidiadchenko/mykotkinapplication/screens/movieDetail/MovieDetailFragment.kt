@@ -1,8 +1,7 @@
-package com.vitaliidiadchenko.mykotkinapplication
+package com.vitaliidiadchenko.mykotkinapplication.screens.movieDetail
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorViewHolderAdapter
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
+import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 
-class FragmentMovieDetail : Fragment() {
+class MovieDetailFragment : Fragment() {
 
     private var listener: FragmentListener? = null
     private var recyclerView: RecyclerView? = null
@@ -38,7 +39,6 @@ class FragmentMovieDetail : Fragment() {
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView?.adapter = ActorViewHolderAdapter()
@@ -46,7 +46,6 @@ class FragmentMovieDetail : Fragment() {
         recyclerView?.hasFixedSize()
         arguments?.getParcelable<Movie>("movie")?.let { movie ->
             setupView(movie)
-            Log.i("movie", movie.id.toString())
         }
     }
 
@@ -96,8 +95,8 @@ class FragmentMovieDetail : Fragment() {
     }
 
     companion object {
-        fun newInstance(movie: Movie): FragmentMovieDetail =
-            FragmentMovieDetail().apply {
+        fun newInstance(movie: Movie): MovieDetailFragment =
+            MovieDetailFragment().apply {
                 val args = Bundle()
                 args.putParcelable("movie", movie)
                 arguments = args
