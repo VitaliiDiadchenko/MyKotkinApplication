@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication.viewModel
+package com.vitaliidiadchenko.mykotkinapplication.screens.movieList
 
 sealed class State {
     class Init : State()

@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication
+package com.vitaliidiadchenko.mykotkinapplication.screens.movieList
 
 import android.content.Context
 import android.os.Bundle
@@ -7,22 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
+import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieViewHolderAdapter
 import com.vitaliidiadchenko.mykotkinapplication.adapter.OnPosterCardClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
-import com.vitaliidiadchenko.mykotkinapplication.viewModel.State
-import com.vitaliidiadchenko.mykotkinapplication.viewModel.ViewModelMovieList
-import com.vitaliidiadchenko.mykotkinapplication.viewModel.ViewModelMovieListFactory
 
-class FragmentMovieList : Fragment() {
+class MovieListFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
     private var progressBar: ProgressBar? = null
     private var listener: FragmentListener? = null
-    private lateinit var viewModel: ViewModelMovieList
+    private val viewModel: MovieListViewModel by viewModels { MovieListViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +33,6 @@ class FragmentMovieList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModelFactory = ViewModelMovieListFactory(requireContext())
-        viewModel = ViewModelProvider(this, viewModelFactory).get(ViewModelMovieList::class.java)
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recycler_view_list_movies)
         recyclerView?.adapter = MovieViewHolderAdapter(movieListener)
