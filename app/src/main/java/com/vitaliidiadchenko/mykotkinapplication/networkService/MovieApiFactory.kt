@@ -5,18 +5,35 @@ import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.create
 
 object MovieApiFactory {
+
     private val json = Json { ignoreUnknownKeys = true }
 
+    private val loggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(ApiKeyInterceptor())
+        .addInterceptor(loggingInterceptor)
+        .build()
+
     @ExperimentalSerializationApi
-    private val retrofit: Retrofit = Retrofit.Builder()
+    val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
+        .client(client)
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .build()
 
-    @Suppress("unused")
-    val movieApiService: MovieApiService = retrofit.create()
+
+
+
+
+
+
+
 }

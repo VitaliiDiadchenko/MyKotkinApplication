@@ -8,6 +8,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
@@ -50,7 +51,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun onBind(movie: Movie) {
 
-        Glide.with(context).load(movie.poster).into(poster)
+        Glide.with(context).load(BuildConfig.BASE_IMAGE_URL + BuildConfig.SMALL_POSTER_SIZE + movie.poster).into(poster)
         like.setImageResource(if (movie.like) R.drawable.ic_like else R.drawable.ic_empty_like)
         if (movie.adult) {
             ageRating.text = itemView.resources.getString(R.string.adult_age_rating)
@@ -58,7 +59,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         title.text = movie.title
         rating.rating = (movie.ratings / 2)
         review.text = context.resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
-        tagLine.text = movie.genres.joinToString(", ") {it.name}
+        tagLine.text = movie.genres.joinToString(", ")
         runTime.text = context.resources.getQuantityString(R.plurals.run_time, movie.runtime, movie.runtime)
     }
 }

@@ -8,12 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 
-class ActorViewHolderAdapter : RecyclerView.Adapter<ActorViewHolder>() {
-
-    private var listActors = listOf<Actor>()
+class ActorAdapter(
+    private val listActors: List<Actor>
+) : RecyclerView.Adapter<ActorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         return ActorViewHolder(
@@ -29,10 +30,6 @@ class ActorViewHolderAdapter : RecyclerView.Adapter<ActorViewHolder>() {
 
     }
 
-    fun bindActors(newListActors: List<Actor>) {
-        listActors = newListActors
-        notifyDataSetChanged()
-    }
 }
 
 class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,10 +42,11 @@ class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .placeholder(R.drawable.ic_avatar_placeholder)
             .fallback(R.drawable.ic_avatar_placeholder)
             .circleCrop()
-        Glide.with(context).load(actor.picture).apply(imageOption).into(avatar)
+        Glide.with(context)
+            .load(BuildConfig.BASE_IMAGE_URL + BuildConfig.ACTOR_AVATAR_SIZE + actor.picture)
+            .apply(imageOption).into(avatar)
         name.text = actor.name
     }
-
 }
 
 private val RecyclerView.ViewHolder.context
