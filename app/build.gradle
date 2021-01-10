@@ -18,6 +18,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/\""
+        buildConfigField "String", "API_KEY","\"727840eeb047197730d7b0a573d0a073\""
+        buildConfigField "String", "SMALL_POSTER_SIZE","\"w185\""
+        buildConfigField "String", "BIG_POSTER_SIZE","\"w780\""
+        buildConfigField "String", "ACTOR_AVATAR_SIZE","\"w342\""
     }
 
     buildTypes {
@@ -30,18 +36,6 @@ android {
         }
     }
 
-    flavorDimensions "serverType"
-    productFlavors {
-        prod {
-            dimension "serverType"
-            buildConfigField "String", "BASE_URL", "\"https ://api.themoviedb.org/3/\""
-            buildConfigField "String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/\""
-            buildConfigField "String", "API_KEY","\"727840eeb047197730d7b0a573d0a073\""
-            buildConfigField "String", "SMALL_POSTER_SIZE","\"w185\""
-            buildConfigField "String", "BIG_POSTER_SIZE","\"w780\""
-            buildConfigField "String", "ACTOR_AVATAR_SIZE","\"w342\""
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -82,6 +76,7 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
 
     //okhttp3 library
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    def okhttp_version = "4.9.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 }

@@ -66,23 +66,25 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setupView(movie: Movie) {
-        view?.apply {
+        view?.let {
             // set backdrop poster
-            val backdrop = findViewById<ImageView>(R.id.image_poster)
-            Glide.with(context)
-                .load(BuildConfig.BASE_IMAGE_URL + BuildConfig.BIG_POSTER_SIZE + movie.backdrop)
-                .into(backdrop)
+            val backdrop = it.findViewById<ImageView>(R.id.image_poster)
+            context?.let { context ->
+                Glide.with(context)
+                    .load(movie.backdrop)
+                    .into(backdrop)
+            }
 
-            findViewById<TextView>(R.id.movieTitle).text = movie.title
-            findViewById<TextView>(R.id.tag_line).text =
+            it.findViewById<TextView>(R.id.movieTitle).text = movie.title
+            it.findViewById<TextView>(R.id.tag_line).text =
                 movie.genres.joinToString(separator = ", ")
-            findViewById<TextView>(R.id.storyline).text = movie.overview
-            findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
-            findViewById<TextView>(R.id.textReview).text =
+            it.findViewById<TextView>(R.id.storyline).text = movie.overview
+            it.findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
+            it.findViewById<TextView>(R.id.textReview).text =
                 resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
             //set ageRating
             if (movie.adult) {
-                with(findViewById<TextView>(R.id.ageRating)) {
+                with(it.findViewById<TextView>(R.id.ageRating)) {
                     text = resources.getString(R.string.adult_age_rating)
                     visibility = View.VISIBLE
                 }
@@ -94,9 +96,9 @@ class MovieDetailFragment : Fragment() {
     //set actor's images to recyclerView
     private fun setupActors(actors: List<Actor>) {
         if (actors.isNotEmpty()) {
-            view?.apply {
-                findViewById<TextView>(R.id.text_cast).isVisible = true
-                findViewById<RecyclerView>(R.id.recycler_view_list_actors).apply {
+            view?.let {
+                it.findViewById<TextView>(R.id.text_cast).isVisible = true
+                it.findViewById<RecyclerView>(R.id.recycler_view_list_actors).apply {
                     isVisible = true
                     adapter = ActorAdapter(actors)
                 }

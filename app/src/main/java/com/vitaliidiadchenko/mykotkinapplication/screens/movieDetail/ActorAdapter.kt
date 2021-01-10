@@ -27,9 +27,7 @@ class ActorAdapter(
 
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
         holder.onBind(listActors[position])
-
     }
-
 }
 
 class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -43,8 +41,9 @@ class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .fallback(R.drawable.ic_avatar_placeholder)
             .circleCrop()
         Glide.with(context)
-            .load(BuildConfig.BASE_IMAGE_URL + BuildConfig.ACTOR_AVATAR_SIZE + actor.picture)
-            .apply(imageOption).into(avatar)
+            .load(actor.picture)
+            .apply(imageOption)
+            .into(avatar)
         name.text = actor.name
     }
 }

@@ -51,7 +51,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun onBind(movie: Movie) {
 
-        Glide.with(context).load(BuildConfig.BASE_IMAGE_URL + BuildConfig.SMALL_POSTER_SIZE + movie.poster).into(poster)
+        Glide.with(context).load(movie.poster).into(poster)
         like.setImageResource(if (movie.like) R.drawable.ic_like else R.drawable.ic_empty_like)
         if (movie.adult) {
             ageRating.text = itemView.resources.getString(R.string.adult_age_rating)

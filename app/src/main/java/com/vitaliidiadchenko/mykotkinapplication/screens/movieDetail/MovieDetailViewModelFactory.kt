@@ -2,7 +2,7 @@ package com.vitaliidiadchenko.mykotkinapplication.screens.movieDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.vitaliidiadchenko.mykotkinapplication.networkService.MovieApiFactory
+import com.vitaliidiadchenko.mykotkinapplication.networkModule.MovieApiFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import retrofit2.create
 
