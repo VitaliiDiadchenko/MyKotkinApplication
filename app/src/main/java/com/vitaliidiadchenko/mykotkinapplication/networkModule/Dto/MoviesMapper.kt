@@ -5,8 +5,7 @@ import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-//method to deserialize ListMovies
-suspend fun deserializeMovies(
+suspend fun moviesDtoMapping(
     moviesDto: List<MovieDto>, genres: List<GenreDto>
 ): List<Movie> = withContext(Dispatchers.IO) {
 

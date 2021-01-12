@@ -9,24 +9,26 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
-object MovieApiHolder {
+object RetrofitHolder {
 
-    private val json = Json { ignoreUnknownKeys = true }
-
-    private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+    private val client: OkHttpClient by lazy {
+        OkHttpClient.Builder()
+            .addInterceptor(ApiKeyInterceptor())
+            .addInterceptor(
+                HttpLoggingInterceptor()
+                    .apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+            .build()
     }
-    private val client = OkHttpClient.Builder()
-        .addInterceptor(ApiKeyInterceptor())
-        .addInterceptor(loggingInterceptor)
-        .build()
 
     @ExperimentalSerializationApi
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(client)
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(Json { ignoreUnknownKeys = true }
+                .asConverterFactory("application/json".toMediaType()))
             .build()
     }
 }

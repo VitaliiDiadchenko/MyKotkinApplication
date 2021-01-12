@@ -6,13 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
-import com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto.deserializeMovies
-import com.vitaliidiadchenko.mykotkinapplication.networkModule.MovieApiService
+import com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto.moviesDtoMapping
+import com.vitaliidiadchenko.mykotkinapplication.networkModule.MovieApi
 import com.vitaliidiadchenko.mykotkinapplication.screens.State
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MovieListViewModel(private val movieApiService: MovieApiService) : ViewModel() {
+class MovieListViewModel(private val movieApi: MovieApi) : ViewModel() {
 
     private val _state = MutableLiveData<State>(State.Init())
     val state: LiveData<State> = _state
@@ -24,9 +24,9 @@ class MovieListViewModel(private val movieApiService: MovieApiService) : ViewMod
         viewModelScope.launch {
             try {
                 _state.postValue(State.Loading())
-                val moviesDto = movieApiService.getMovies()
-                val genersDto = movieApiService.getGenres()
-                val movies = deserializeMovies(moviesDto.result, genersDto.genres)
+                val moviesDto = movieApi.getMovies()
+                val genersDto = movieApi.getGenres()
+                val movies = moviesDtoMapping(moviesDto.result, genersDto.genres)
                 _moviesData.postValue(movies)
                 _state.postValue(State.Success())
             } catch (e: Exception) {

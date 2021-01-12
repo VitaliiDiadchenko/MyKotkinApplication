@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 //method to deserialize ListActors
-suspend fun deserializeActors(
+suspend fun actorsDtoMapping(
     actorsDto: List<ActorDto>
 ): List<Actor> = withContext(Dispatchers.IO) {
     actorsDto.map { actorsDto ->

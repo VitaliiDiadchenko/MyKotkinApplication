@@ -6,7 +6,7 @@ import com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto.MoviesDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface MovieApiService {
+interface MovieApi {
 
     @GET("movie/popular")
     suspend fun getMovies(): MoviesDto
