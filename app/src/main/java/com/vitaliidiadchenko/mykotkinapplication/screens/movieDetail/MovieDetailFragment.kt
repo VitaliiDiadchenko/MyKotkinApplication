@@ -9,12 +9,16 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
-import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorViewHolderAdapter
+import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorAdapter
+import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 
@@ -22,6 +26,7 @@ class MovieDetailFragment : Fragment() {
 
     private var listener: FragmentListener? = null
     private var recyclerView: RecyclerView? = null
+    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,10 +46,11 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView?.adapter = ActorViewHolderAdapter()
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView?.hasFixedSize()
         arguments?.getParcelable<Movie>("movie")?.let { movie ->
+            viewModel.getActors(movieId = movie.id)
+            viewModel.actors.observe(viewLifecycleOwner, {setupActors(it)})
             setupView(movie)
         }
     }
@@ -60,35 +66,41 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setupView(movie: Movie) {
-        view?.apply {
+        view?.let {
             // set backdrop poster
-            val backdrop = findViewById<ImageView>(R.id.image_poster)
-            Glide.with(context)
-                .load(movie.backdrop)
-                .into(backdrop)
+            val backdrop = it.findViewById<ImageView>(R.id.image_poster)
+            context?.let { context ->
+                Glide.with(context)
+                    .load(movie.backdrop)
+                    .into(backdrop)
+            }
 
-            findViewById<TextView>(R.id.movieTitle).text = movie.title
-            findViewById<TextView>(R.id.tag_line).text =
-                movie.genres.joinToString(separator = ", ") { it.name }
-            findViewById<TextView>(R.id.storyline).text = movie.overview
-            findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
-            findViewById<TextView>(R.id.textReview).text =
+            it.findViewById<TextView>(R.id.movieTitle).text = movie.title
+            it.findViewById<TextView>(R.id.tag_line).text =
+                movie.genres.joinToString(separator = ", ")
+            it.findViewById<TextView>(R.id.storyline).text = movie.overview
+            it.findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
+            it.findViewById<TextView>(R.id.textReview).text =
                 resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
             //set ageRating
             if (movie.adult) {
-                with(findViewById<TextView>(R.id.ageRating)) {
+                with(it.findViewById<TextView>(R.id.ageRating)) {
                     text = resources.getString(R.string.adult_age_rating)
                     visibility = View.VISIBLE
                 }
             }
-            //set actor's images to recyclerView
-            val actors = movie.actors
-            if (actors.isNotEmpty()) {
-                with(findViewById<RecyclerView>(R.id.recycler_view_list_actors)) {
-                    (recyclerView?.adapter as ActorViewHolderAdapter).apply {
-                        bindActors(actors)
-                        visibility = View.VISIBLE
-                    }
+
+        }
+    }
+
+    //set actor's images to recyclerView
+    private fun setupActors(actors: List<Actor>) {
+        if (actors.isNotEmpty()) {
+            view?.let {
+                it.findViewById<TextView>(R.id.text_cast).isVisible = true
+                it.findViewById<RecyclerView>(R.id.recycler_view_list_actors).apply {
+                    isVisible = true
+                    adapter = ActorAdapter(actors)
                 }
             }
         }
@@ -101,6 +113,5 @@ class MovieDetailFragment : Fragment() {
                 args.putParcelable("movie", movie)
                 arguments = args
             }
-
     }
 }

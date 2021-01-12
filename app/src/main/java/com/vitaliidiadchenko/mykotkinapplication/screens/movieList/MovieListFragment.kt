@@ -15,6 +15,7 @@ import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieViewHolderAdapter
 import com.vitaliidiadchenko.mykotkinapplication.adapter.OnPosterCardClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
+import com.vitaliidiadchenko.mykotkinapplication.screens.State
 
 class MovieListFragment : Fragment() {
 
