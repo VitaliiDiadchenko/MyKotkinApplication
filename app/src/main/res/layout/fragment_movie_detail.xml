@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/image_poster"
+            android:id="@+id/image_actor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -28,10 +28,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/ic_gradient_detail_poster"
-            app:layout_constraintBottom_toBottomOf="@+id/image_poster"
-            app:layout_constraintEnd_toEndOf="@+id/image_poster"
-            app:layout_constraintStart_toStartOf="@+id/image_poster"
-            app:layout_constraintTop_toTopOf="@+id/image_poster" />
+            app:layout_constraintBottom_toBottomOf="@+id/image_actor"
+            app:layout_constraintEnd_toEndOf="@+id/image_actor"
+            app:layout_constraintStart_toStartOf="@+id/image_actor"
+            app:layout_constraintTop_toTopOf="@+id/image_actor" />
 
 
         <Button
@@ -56,23 +56,23 @@
             android:background="@drawable/ic_age_rating_background"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/movieTitle"
+            app:layout_constraintBottom_toTopOf="@+id/name_of_actor"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="13+" />
 
         <TextView
-            android:id="@+id/movieTitle"
+            android:id="@+id/name_of_actor"
             style="@style/main_header_style"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/layout_gap"
-            app:layout_constraintBottom_toBottomOf="@+id/image_poster"
+            app:layout_constraintBottom_toBottomOf="@+id/image_actor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/image_actor"
             tools:text="Avengers: \nEnd Game" />
 
         <TextView
-            android:id="@+id/tag_line"
+            android:id="@+id/date_of_birth"
             style="@style/tag_line_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,11 +81,11 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieTitle"
+            app:layout_constraintTop_toBottomOf="@+id/name_of_actor"
             tools:text="Action, Adventure, Fantasy" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/rating_bar_actor"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/layout_gap"
@@ -105,12 +105,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            app:layout_constraintStart_toEndOf="@+id/ratingBar"
-            app:layout_constraintTop_toBottomOf="@+id/tag_line"
+            app:layout_constraintStart_toEndOf="@+id/rating_bar_actor"
+            app:layout_constraintTop_toBottomOf="@+id/date_of_birth"
             tools:text="125 REVIEWS" />
 
         <TextView
-            android:id="@+id/storyline"
+            android:id="@+id/title_biography"
             style="@style/header_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,8 +121,8 @@
             tools:text="Storyline" />
 
         <TextView
-            android:id="@+id/description_of_movie"
-            style="@style/movie_description__style"
+            android:id="@+id/biography"
+            style="@style/description_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layout_gap"
@@ -130,7 +130,7 @@
             android:lineSpacingExtra="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/storyline"
+            app:layout_constraintTop_toBottomOf="@+id/title_biography"
             tools:text="After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe." />
 
         <TextView
@@ -142,7 +142,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/text_cast"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_of_movie" />
+            app:layout_constraintTop_toBottomOf="@+id/biography" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_list_actors"

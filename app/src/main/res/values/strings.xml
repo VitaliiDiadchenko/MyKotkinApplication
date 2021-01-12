@@ -12,6 +12,10 @@
     <string name="img_small_poster">img_small_poster</string>
     <string name="icon_like">icon_like</string>
     <string name="adult_age_rating">18+</string>
+    <string name="text_biography">Biography</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="text_place_of_birth">Place of birth:</string>
+    <string name="example_of_biography">Jean Reno (born 30 July 1948)is a French actor of Andalusian Spanish descent. Working in French, English, and Italian, he has appeared not only in numerous successful Hollywood productions such as The Pink Panther, Godzilla, The Da Vinci Code, Mission: Impossible, Ronin and Couples Retreat, but also in European productions such as the French films Les Visiteurs (1993) and Léon (1994) along with the 2005 Italian film The Tiger and the Snow.</string>
 
     <plurals name="review">
         <item quantity="one">%d review</item>

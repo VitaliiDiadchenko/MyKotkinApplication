@@ -14,14 +14,14 @@
         <ImageView
             android:id="@+id/image_actor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="408dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/background_cover"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/img_orig" />
+            tools:srcCompat="@drawable/img_jan_reno" />
 
         <View
             android:id="@+id/view_gradient"
@@ -47,42 +47,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/ageRating"
-            style="@style/bold_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/ic_age_rating_background"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/name_of_actor"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="13+" />
-
-        <TextView
             android:id="@+id/name_of_actor"
-            style="@style/main_header_style"
+            style="@style/header_style"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/layout_gap"
             app:layout_constraintBottom_toBottomOf="@+id/image_actor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_actor"
-            tools:text="Avengers: \nEnd Game" />
-
-        <TextView
-            android:id="@+id/date_of_birth"
-            style="@style/tag_line_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_of_actor"
-            tools:text="Action, Adventure, Fantasy" />
+            tools:text="Jan Reno" />
 
         <RatingBar
             android:id="@+id/rating_bar_actor"
@@ -91,23 +65,56 @@
             android:layout_marginStart="@dimen/layout_gap"
             android:layout_marginTop="2dp"
             android:numStars="5"
-            android:rating="4"
+            android:rating="5"
             android:theme="@style/rating_bar_style"
-            app:layout_constraintBottom_toBottomOf="@+id/textReview"
-            app:layout_constraintEnd_toStartOf="@+id/textReview"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textReview" />
+            app:layout_constraintTop_toBottomOf="@+id/name_of_actor" />
 
         <TextView
-            android:id="@+id/textReview"
-            style="@style/review_count_style"
+            android:id="@+id/title_date_of_birth"
+            style="@style/header_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar_actor"
+            app:layout_constraintEnd_toStartOf="@+id/date_of_birth"
+            android:text="@string/date_of_birth" />
+
+        <TextView
+            android:id="@+id/date_of_birth"
+            style="@style/description_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/title_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar_actor"
+            tools:text="1948-07-30" />
+
+        <TextView
+            android:id="@+id/title_place_of_birth"
+            style="@style/header_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
             android:layout_marginTop="4dp"
-            app:layout_constraintStart_toEndOf="@+id/rating_bar_actor"
-            app:layout_constraintTop_toBottomOf="@+id/date_of_birth"
-            tools:text="125 REVIEWS" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_date_of_birth"
+            app:layout_constraintEnd_toStartOf="@+id/place_of_birth"
+            android:text="@string/text_place_of_birth" />
+
+        <TextView
+            android:id="@+id/place_of_birth"
+            style="@style/description_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@+id/title_place_of_birth"
+            app:layout_constraintTop_toBottomOf="@+id/title_date_of_birth"
+            tools:text="Casablanca, Morocco" />
 
         <TextView
             android:id="@+id/title_biography"
@@ -115,10 +122,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textReview"
-            tools:text="Storyline" />
+            app:layout_constraintTop_toBottomOf="@+id/title_place_of_birth"
+            android:text="@string/text_biography" />
 
         <TextView
             android:id="@+id/biography"
@@ -131,29 +138,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_biography"
-            tools:text="After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe." />
-
-        <TextView
-            android:id="@+id/text_cast"
-            style="@style/header_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginTop="24dp"
-            android:text="@string/text_cast"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/biography" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_list_actors"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="@dimen/layout_gap"
-            android:layout_marginEnd="@dimen/layout_gap"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_cast"/>
+            tools:text="@string/example_of_biography" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

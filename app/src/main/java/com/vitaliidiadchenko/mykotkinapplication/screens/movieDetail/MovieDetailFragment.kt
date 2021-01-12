@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorAdapter
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
@@ -68,18 +67,18 @@ class MovieDetailFragment : Fragment() {
     private fun setupView(movie: Movie) {
         view?.let {
             // set backdrop poster
-            val backdrop = it.findViewById<ImageView>(R.id.image_poster)
+            val backdrop = it.findViewById<ImageView>(R.id.image_actor)
             context?.let { context ->
                 Glide.with(context)
                     .load(movie.backdrop)
                     .into(backdrop)
             }
 
-            it.findViewById<TextView>(R.id.movieTitle).text = movie.title
-            it.findViewById<TextView>(R.id.tag_line).text =
+            it.findViewById<TextView>(R.id.name_of_actor).text = movie.title
+            it.findViewById<TextView>(R.id.date_of_birth).text =
                 movie.genres.joinToString(separator = ", ")
-            it.findViewById<TextView>(R.id.storyline).text = movie.overview
-            it.findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
+            it.findViewById<TextView>(R.id.title_biography).text = movie.overview
+            it.findViewById<RatingBar>(R.id.rating_bar_actor).rating = (movie.ratings / 2)
             it.findViewById<TextView>(R.id.textReview).text =
                 resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
             //set ageRating
