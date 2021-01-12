@@ -17,14 +17,14 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         }
     }
 
-    override fun goToFragmentMoviesDetails(movie: Movie) {
+    override fun goToMoviesDetailsFragment(movie: Movie) {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .add(R.id.main_container, MovieDetailFragment.newInstance(movie))
             .commit()
     }
 
-    override fun goToFragmentMoviesList() {
+    override fun goToMoviesListFragment() {
         supportFragmentManager.popBackStack()
     }
 }

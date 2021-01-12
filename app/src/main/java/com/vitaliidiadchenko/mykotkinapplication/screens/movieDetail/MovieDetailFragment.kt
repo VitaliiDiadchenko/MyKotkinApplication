@@ -37,7 +37,7 @@ class MovieDetailFragment : Fragment() {
 
         view?.findViewById<Button>(R.id.button_back)?.apply {
             setOnClickListener {
-                listener?.goToFragmentMoviesList()
+                listener?.goToMoviesListFragment()
             }
         }
         return view

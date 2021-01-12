@@ -11,9 +11,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
+import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
 class ActorAdapter(
-    private val listActors: List<Actor>
+    private val listActors: List<Actor>,
+    private var onActorItemClickListener: OnActorItemClickListener
 ) : RecyclerView.Adapter<ActorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
@@ -27,6 +29,9 @@ class ActorAdapter(
 
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
         holder.onBind(listActors[position])
+        holder.itemView.setOnClickListener {
+            onActorItemClickListener.onClick(listActors[position])
+        }
     }
 }
 
@@ -50,3 +55,7 @@ class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
+
+interface OnActorItemClickListener {
+    fun onClick(actor: Actor)
+}
