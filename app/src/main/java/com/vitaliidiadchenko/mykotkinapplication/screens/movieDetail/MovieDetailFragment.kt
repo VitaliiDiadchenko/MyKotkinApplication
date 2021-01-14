@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorAdapter
+import com.vitaliidiadchenko.mykotkinapplication.adapter.OnActorItemClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
@@ -32,19 +33,16 @@ class MovieDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
-
-        view?.findViewById<Button>(R.id.button_back)?.apply {
-            setOnClickListener {
-                listener?.goToMoviesListFragment()
-            }
-        }
-        return view
+        return  inflater.inflate(R.layout.fragment_movie_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.findViewById<Button>(R.id.button_back)?.apply {
+            setOnClickListener {
+                listener?.goToMoviesListFragment()
+            }
+        }
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView?.hasFixedSize()
         arguments?.getParcelable<Movie>("movie")?.let { movie ->
@@ -64,21 +62,31 @@ class MovieDetailFragment : Fragment() {
         listener = null
     }
 
+    private val actorListener = object : OnActorItemClickListener {
+        override fun onClick(actor: Actor) {
+            arguments?.getParcelable<Movie>("movie")?.let {
+                listener?.goToActorDetailFragment(actor,
+                    it
+                )
+            }
+        }
+    }
+
     private fun setupView(movie: Movie) {
         view?.let {
             // set backdrop poster
-            val backdrop = it.findViewById<ImageView>(R.id.image_actor)
+            val backdrop = it.findViewById<ImageView>(R.id.image_poster)
             context?.let { context ->
                 Glide.with(context)
                     .load(movie.backdrop)
                     .into(backdrop)
             }
 
-            it.findViewById<TextView>(R.id.name_of_actor).text = movie.title
-            it.findViewById<TextView>(R.id.date_of_birth).text =
+            it.findViewById<TextView>(R.id.movieTitle).text = movie.title
+            it.findViewById<TextView>(R.id.tag_line).text =
                 movie.genres.joinToString(separator = ", ")
-            it.findViewById<TextView>(R.id.title_biography).text = movie.overview
-            it.findViewById<RatingBar>(R.id.rating_bar_actor).rating = (movie.ratings / 2)
+            it.findViewById<TextView>(R.id.description_of_movie).text = movie.overview
+            it.findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
             it.findViewById<TextView>(R.id.textReview).text =
                 resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
             //set ageRating
@@ -99,7 +107,7 @@ class MovieDetailFragment : Fragment() {
                 it.findViewById<TextView>(R.id.text_cast).isVisible = true
                 it.findViewById<RecyclerView>(R.id.recycler_view_list_actors).apply {
                     isVisible = true
-                    adapter = ActorAdapter(actors)
+                    adapter = ActorAdapter(actors, actorListener)
                 }
             }
         }

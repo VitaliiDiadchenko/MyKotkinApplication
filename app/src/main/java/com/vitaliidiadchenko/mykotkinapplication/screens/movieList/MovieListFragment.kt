@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 import com.vitaliidiadchenko.mykotkinapplication.R
-import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieViewHolderAdapter
+import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieAdapter
 import com.vitaliidiadchenko.mykotkinapplication.adapter.OnPosterCardClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.State
@@ -36,7 +36,7 @@ class MovieListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recycler_view_list_movies)
-        recyclerView?.adapter = MovieViewHolderAdapter(movieListener)
+        recyclerView?.adapter = MovieAdapter(movieListener)
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
         recyclerView?.hasFixedSize()
         setMovies()
@@ -67,7 +67,7 @@ class MovieListFragment : Fragment() {
     }
 
     private fun updateData(movies : List<Movie>) {
-        (recyclerView?.adapter as? MovieViewHolderAdapter)?.apply {
+        (recyclerView?.adapter as? MovieAdapter)?.apply {
             bindMovies(movies)
         }
     }

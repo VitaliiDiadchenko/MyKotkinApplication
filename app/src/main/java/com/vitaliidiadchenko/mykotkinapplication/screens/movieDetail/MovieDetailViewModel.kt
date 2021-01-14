@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
-import com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto.actorsDtoMapping
-import com.vitaliidiadchenko.mykotkinapplication.networkModule.MovieApi
+import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.actorsDtoMapping
+import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
 import kotlinx.coroutines.launch
 import java.lang.Exception
 

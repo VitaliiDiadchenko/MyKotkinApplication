@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto
+package com.vitaliidiadchenko.mykotkinapplication.network_module.dto
 
 import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie

@@ -1,12 +1,10 @@
-package com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto
+package com.vitaliidiadchenko.mykotkinapplication.network_module.dto
 
-import androidx.lifecycle.MutableLiveData
 import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-//method to deserialize ListActors
 suspend fun actorsDtoMapping(
     actorsDto: List<ActorDto>
 ): List<Actor> = withContext(Dispatchers.IO) {

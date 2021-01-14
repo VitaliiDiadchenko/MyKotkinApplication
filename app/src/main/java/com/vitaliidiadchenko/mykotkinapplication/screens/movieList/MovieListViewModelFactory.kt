@@ -2,7 +2,7 @@ package com.vitaliidiadchenko.mykotkinapplication.screens.movieList
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.vitaliidiadchenko.mykotkinapplication.networkModule.RetrofitHolder
+import com.vitaliidiadchenko.mykotkinapplication.network_module.RetrofitHolder
 import kotlinx.serialization.ExperimentalSerializationApi
 import retrofit2.create
 

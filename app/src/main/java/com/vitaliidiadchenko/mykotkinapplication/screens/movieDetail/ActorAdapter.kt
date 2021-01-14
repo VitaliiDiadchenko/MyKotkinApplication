@@ -8,10 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
-import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
 class ActorAdapter(
     private val listActors: List<Actor>,
@@ -36,7 +34,7 @@ class ActorAdapter(
 }
 
 class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val avatar = itemView.findViewById<ImageView>(R.id.img_actor)
+    private val avatar = itemView.findViewById<ImageView>(R.id.image_actor)
     private val name = itemView.findViewById<TextView>(R.id.text_under_img_first_actor)
 
     fun onBind(actor: Actor) {

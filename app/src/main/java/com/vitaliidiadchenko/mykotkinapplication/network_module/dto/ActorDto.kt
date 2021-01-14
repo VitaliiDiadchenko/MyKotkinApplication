@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication.networkModule.Dto
+package com.vitaliidiadchenko.mykotkinapplication.network_module.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
