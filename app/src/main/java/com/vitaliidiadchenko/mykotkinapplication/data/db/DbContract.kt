@@ -1,7 +1,5 @@
 package com.vitaliidiadchenko.mykotkinapplication.data.db
 
-import android.provider.BaseColumns
-
 object DbContract {
 
     const val DATABASE_NAME = "movies.db"
