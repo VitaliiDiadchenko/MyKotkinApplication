@@ -7,12 +7,12 @@ import com.vitaliidiadchenko.mykotkinapplication.data.db.DbContract
 @Entity(tableName = DbContract.MoviesContract.TABLE_NAME)
 data class MovieEntity(
     @PrimaryKey(autoGenerate = true)
-    val uniqueId: Int,
-    val id: Int,
+    var id: Long?,
+    val movieId: Int,
     val title: String,
-    val overview: String,
-    val poster: String,
-    val backdrop: String,
+    val overview: String?,
+    val poster: String?,
+    val backdrop: String?,
     val ratings: Float,
     val adult: Boolean,
     val runtime: Int,

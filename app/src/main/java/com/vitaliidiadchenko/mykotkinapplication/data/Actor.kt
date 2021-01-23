@@ -5,11 +5,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Actor(
-    var id: Int,
-    var name: String,
-    var picture: String,
+    val id: Int,
+    val name: String,
+    val picture: String?,
     var placeOfBirth: String? = null,
-    var popularity: Float = 0.0f,
+    var popularity: Float? = 0.0f,
     var birthday: String? = null,
     var biography: String? = null
 ) : Parcelable

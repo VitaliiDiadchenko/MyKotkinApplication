@@ -10,21 +10,21 @@ import com.vitaliidiadchenko.mykotkinapplication.data.db.DbContract
     tableName = DbContract.ActorsContract.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = MovieEntity::class,
-        parentColumns = arrayOf("id"),
+        parentColumns = arrayOf("movieId"),
         childColumns = arrayOf("movieId"),
         onDelete = CASCADE
     )]
 )
 data class ActorEntity(
     @PrimaryKey(autoGenerate = true)
-    val uniqueId: Int,
-    val id: Int,
+    var id: Long?,
+    val actorId: Int,
     val name: String,
-    val picture: String,
-    var placeOfBirth: String? = null,
-    var popularity: Float = 0.0f,
-    var birthday: String? = null,
-    var biography: String? = null,
+    val picture: String?,
+    val placeOfBirth: String?,
+    val popularity: Float?,
+    val birthday: String?,
+    val biography: String?,
     val movieId: Int
 )
 

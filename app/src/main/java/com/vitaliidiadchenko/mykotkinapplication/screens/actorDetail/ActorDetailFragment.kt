@@ -20,8 +20,8 @@ import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 class ActorDetailFragment : Fragment() {
 
     private var listener: FragmentListener? = null
-    private val viewModel: ActorDetailViewModel by viewModels { ActorDetailViewModelFactory() }
     private var movie: Movie? = null
+    private val viewModel: ActorDetailViewModel by viewModels { ActorDetailViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,9 +44,9 @@ class ActorDetailFragment : Fragment() {
                 movie?.let { it1 -> listener?.goToMoviesDetailsFragment(it1) }
             }
         }
-        arguments?.getParcelable<Actor>("actor")?.let { actor ->
-            viewModel.getActor(actor.id)
-            viewModel.actor.observe(viewLifecycleOwner, { setupView(it) })
+        arguments?.getParcelable<Actor>("actor")?.let {
+            movie?.let { it1 -> viewModel.getActor(it, it1.id) }
+            viewModel.actorLiveData.observe(viewLifecycleOwner, {setupView(it)})
         }
     }
 
@@ -55,7 +55,7 @@ class ActorDetailFragment : Fragment() {
         listener = null
     }
 
-    fun setupView(actor: Actor) {
+    private fun setupView(actor: Actor) {
         view?.let {
             val poster = it.findViewById<ImageView>(R.id.img_actor)
             context?.let { context ->
@@ -64,13 +64,12 @@ class ActorDetailFragment : Fragment() {
                     .into(poster)
             }
             it.findViewById<TextView>(R.id.name_of_actor).text = actor.name
-            it.findViewById<RatingBar>(R.id.rating_bar_actor).rating = actor.popularity
+            it.findViewById<RatingBar>(R.id.rating_bar_actor).rating = actor.popularity!!
             it.findViewById<TextView>(R.id.date_of_birth).text = actor.birthday
             it.findViewById<TextView>(R.id.place_of_birth).text = actor.placeOfBirth
             it.findViewById<TextView>(R.id.biography).text = actor.biography
         }
     }
-
 
     companion object {
         fun newInstance(actor: Actor, movie: Movie): ActorDetailFragment =
