@@ -3,6 +3,7 @@ package com.vitaliidiadchenko.mykotkinapplication.data.db
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.vitaliidiadchenko.mykotkinapplication.App
 import com.vitaliidiadchenko.mykotkinapplication.data.db.entity.ActorEntity
 import com.vitaliidiadchenko.mykotkinapplication.data.db.entity.MovieEntity
