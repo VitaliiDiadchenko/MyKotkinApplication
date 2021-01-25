@@ -14,7 +14,5 @@ class App: Application() {
         private var context: Context? = null
         fun context(): Context = context ?: throw IllegalStateException()
 
-        private val repository by lazy { Repository() }
-        fun repository(): Repository = repository
     }
 }

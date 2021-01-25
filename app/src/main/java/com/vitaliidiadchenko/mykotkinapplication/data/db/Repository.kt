@@ -93,4 +93,11 @@ class Repository : MovieRepository {
             biography = actor.biography,
             movieId = movieId
         )
+    companion object {
+
+        private val repository by lazy { Repository() }
+        fun createRepository(): Repository = repository
+
+    }
+
 }
