@@ -28,12 +28,17 @@ class MovieDetailFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory() }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? FragmentListener
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return  inflater.inflate(R.layout.fragment_movie_detail, container, false)
+        return inflater.inflate(R.layout.fragment_movie_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,28 +52,14 @@ class MovieDetailFragment : Fragment() {
         recyclerView?.hasFixedSize()
         arguments?.getParcelable<Movie>("movie")?.let { movie ->
             viewModel.getActors(movieId = movie.id)
-            viewModel.actors.observe(viewLifecycleOwner, {setupActors(it)})
+            viewModel.actors.observe(viewLifecycleOwner, { setupActors(it) })
             setupView(movie)
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = context as? FragmentListener
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
     private val actorListener = object : OnActorItemClickListener {
         override fun onClick(actor: Actor) {
-            arguments?.getParcelable<Movie>("movie")?.let {
-                listener?.goToActorDetailFragment(actor,
-                    it
-                )
-            }
+            listener?.goToActorDetailFragment(actor)
         }
     }
 
@@ -96,7 +87,6 @@ class MovieDetailFragment : Fragment() {
                     visibility = View.VISIBLE
                 }
             }
-
         }
     }
 
@@ -111,6 +101,11 @@ class MovieDetailFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     companion object {

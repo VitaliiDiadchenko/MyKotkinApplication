@@ -6,50 +6,48 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
-import com.vitaliidiadchenko.mykotkinapplication.data.db.Repository
+import com.vitaliidiadchenko.mykotkinapplication.data.ActorDetail
+import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.MovieRepositoryImpl
 import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
-import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.convertActorDetailDtoToActor
+import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.convertActorDetailDtoToActorDetail
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ActorDetailViewModel(
     private val movieApi: MovieApi,
-    private val repository: Repository
+    private val repository: MovieRepositoryImpl
 ) : ViewModel() {
 
-    private var _actor = MutableLiveData<Actor>()
-    val actorLiveData: LiveData<Actor> get() = _actor
+    private var _actor = MutableLiveData<ActorDetail>()
+    val actorLiveData: LiveData<ActorDetail> get() = _actor
 
-    fun getActor(actor: Actor, movieId: Int) {
-        loadActorFromDb(actor)
-        loadActorFromNetwork(actor, movieId)
-    }
-
-    private fun loadActorFromNetwork(actor: Actor, movieId: Int) {
+    fun getActorDetail(actorId: Int) {
         viewModelScope.launch {
-            try {
-                val actorDto = movieApi.getActor(actor.id)
-                _actor.postValue(convertActorDetailDtoToActor(actorDto))
-                updateActorIntoDb(actor, movieId)
-            } catch (e: Exception) {
-                Log.i("Error getting actor", e.message.toString())
-            }
+            loadActorFromDb(actorId)
+            loadActorFromNetwork(actorId)
         }
     }
 
-    private fun updateActorIntoDb(actor: Actor, movieId: Int) {
-        viewModelScope.launch {
-            repository.updateActor(actor, movieId)
+    private suspend fun loadActorFromNetwork(actorId: Int) {
+        try {
+            val actorDetailDto = movieApi.getActorDetail(actorId)
+            val actorDetail = convertActorDetailDtoToActorDetail(actorDetailDto)
+            _actor.postValue(actorDetail)
+            updateActorDetailIntoDb(actorDetail)
+        } catch (e: Exception) {
+            Log.i("Error getting actor", e.message.toString())
         }
     }
 
-    private fun loadActorFromDb(actor: Actor) {
-        viewModelScope.launch {
-            try{
-                _actor.postValue(repository.getActorById(actor.id))
-            } catch (e: Exception) {
-                Log.i("Error getting actorData", e.message.toString())
-            }
+    private suspend fun updateActorDetailIntoDb(actorDetail: ActorDetail) {
+        repository.updateActorDetailIntoDb(actorDetail)
+    }
+
+    private suspend fun loadActorFromDb(actorId: Int) {
+        try {
+            _actor.postValue(repository.getActorDetailById(actorId))
+        } catch (e: Exception) {
+            Log.i("Error getting actorData", e.message.toString())
         }
     }
 }

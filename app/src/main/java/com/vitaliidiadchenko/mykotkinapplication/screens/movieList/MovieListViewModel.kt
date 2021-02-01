@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
-import com.vitaliidiadchenko.mykotkinapplication.data.db.Repository
+import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.MovieRepositoryImpl
 import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.moviesDtoMapping
 import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
 import com.vitaliidiadchenko.mykotkinapplication.screens.State
@@ -15,7 +15,7 @@ import java.lang.Exception
 
 class MovieListViewModel(
     private val movieApi: MovieApi,
-    private val repository: Repository
+    private val repository: MovieRepositoryImpl
 ) : ViewModel() {
 
     private val _state = MutableLiveData<State>(State.Init())
@@ -25,51 +25,45 @@ class MovieListViewModel(
     val moviesData: LiveData<List<Movie>> get() = _moviesData
 
     init {
-        loadMoviesFromDb()
-        loadMoviesFromNetwork()
-    }
-
-    private fun loadMoviesFromNetwork(){
         viewModelScope.launch {
-            try {
-                _state.postValue(State.Loading())
-                val moviesDto = movieApi.getMovies()
-                val genersDto = movieApi.getGenres()
-                val movies = moviesDtoMapping(moviesDto.result, genersDto.genres)
-                _moviesData.postValue(movies)
-                _state.postValue(State.Success())
-                updateMoviesIntoDb(movies)
-            } catch (e: Exception) {
-                _state.postValue(State.Error())
-                Log.i("Error getting moviesData", e.message.toString())
-            }
+            loadMoviesFromDb()
+            loadMoviesFromNetwork()
         }
     }
 
-    private fun updateMoviesIntoDb(movies: List<Movie>){
-        viewModelScope.launch {
-            if(moviesData.value?.isNotEmpty() == true)
+    private suspend fun loadMoviesFromNetwork() {
+        try {
+            _state.postValue(State.Loading())
+            val moviesDto = movieApi.getMovies()
+            val genersDto = movieApi.getGenres()
+            val movies = moviesDtoMapping(moviesDto.result, genersDto.genres)
+            _moviesData.postValue(movies)
+            _state.postValue(State.Success())
+            updateMoviesIntoDb(movies)
+        } catch (e: Exception) {
+            _state.postValue(State.Error())
+            Log.i("Error getting moviesData", e.message.toString())
+        }
+    }
+
+    private suspend fun updateMoviesIntoDb(movies: List<Movie>) {
+        if (moviesData.value?.isNotEmpty() == true)
             repository.updateMoviesIntoDb(movies)
-        }
     }
 
-    private fun loadMoviesFromDb(){
-        viewModelScope.launch {
-           try {
-               _state.postValue(State.Loading())
-               val movies = repository.getAllMovies()
-               if (movies.isNotEmpty()) {
-                   _state.postValue(State.Success())
-                   _moviesData.postValue(movies)
-               } else {
-                   _state.postValue(State.Error())
-               }
-           } catch (e: Exception) {
-               _state.postValue(State.Error())
-               Log.i("Error getting moviesData", e.message.toString())
-           }
+    private suspend fun loadMoviesFromDb() {
+        try {
+            _state.postValue(State.Loading())
+            val movies = repository.getAllMovies()
+            if (movies.isNotEmpty()) {
+                _state.postValue(State.Success())
+                _moviesData.postValue(movies)
+            } else {
+                _state.postValue(State.Error())
+            }
+        } catch (e: Exception) {
+            _state.postValue(State.Error())
+            Log.i("Error getting moviesData", e.message.toString())
         }
     }
-
-
 }

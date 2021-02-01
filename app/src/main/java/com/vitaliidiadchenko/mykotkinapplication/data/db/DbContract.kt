@@ -11,4 +11,8 @@ object DbContract {
     object ActorsContract {
         const val TABLE_NAME = "actors"
     }
+
+    object ActorsDetailContract {
+        const val TABLE_NAME = "actors_detail"
+    }
 }

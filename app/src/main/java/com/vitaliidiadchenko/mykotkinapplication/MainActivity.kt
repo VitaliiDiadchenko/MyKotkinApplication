@@ -26,10 +26,10 @@ class MainActivity : AppCompatActivity(), FragmentListener {
             .commit()
     }
 
-    override fun goToActorDetailFragment(actor: Actor, movie: Movie) {
+    override fun goToActorDetailFragment(actor: Actor) {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .add(R.id.main_container, ActorDetailFragment.newInstance(actor, movie))
+            .add(R.id.main_container, ActorDetailFragment.newInstance(actor))
             .commit()
     }
 

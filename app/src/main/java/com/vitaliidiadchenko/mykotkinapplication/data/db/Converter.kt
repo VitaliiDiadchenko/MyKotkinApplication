@@ -1,3 +1,4 @@
+/*
 package com.vitaliidiadchenko.mykotkinapplication.data.db
 
 import androidx.room.TypeConverter
@@ -13,4 +14,4 @@ class Converter {
     fun toListOfGeners(flatGenerList: String): List<String> {
         return flatGenerList.split(",")
     }
-}
+}*/

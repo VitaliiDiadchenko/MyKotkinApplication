@@ -1,6 +1,7 @@
-package com.vitaliidiadchenko.mykotkinapplication.data.db
+package com.vitaliidiadchenko.mykotkinapplication.data.db.repository
 
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
+import com.vitaliidiadchenko.mykotkinapplication.data.ActorDetail
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
 interface MovieRepository {
@@ -13,8 +14,8 @@ interface MovieRepository {
 
     suspend fun updateActorsIntoDb(movieId: Int, actors: List<Actor>)
 
-    suspend fun getActorById(actorId: Int): Actor
+    suspend fun getActorDetailById(actorId: Int): ActorDetail
 
-    suspend fun updateActor(actor: Actor, movieId: Int)
+    suspend fun updateActorDetailIntoDb(actorDetail: ActorDetail)
 
 }

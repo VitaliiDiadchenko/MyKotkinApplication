@@ -2,7 +2,6 @@ package com.vitaliidiadchenko.mykotkinapplication
 
 import android.app.Application
 import android.content.Context
-import com.vitaliidiadchenko.mykotkinapplication.data.db.Repository
 
 class App: Application() {
     override fun onCreate() {

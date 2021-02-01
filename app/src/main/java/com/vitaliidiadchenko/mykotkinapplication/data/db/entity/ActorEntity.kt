@@ -1,9 +1,7 @@
 package com.vitaliidiadchenko.mykotkinapplication.data.db.entity
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 import com.vitaliidiadchenko.mykotkinapplication.data.db.DbContract
 
 @Entity(
@@ -13,18 +11,14 @@ import com.vitaliidiadchenko.mykotkinapplication.data.db.DbContract
         parentColumns = arrayOf("movieId"),
         childColumns = arrayOf("movieId"),
         onDelete = CASCADE
-    )]
+    )],
+    indices = [Index(value = ["movieId"])]
 )
 data class ActorEntity(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long?,
+    @PrimaryKey
     val actorId: Int,
     val name: String,
     val picture: String?,
-    val placeOfBirth: String?,
-    val popularity: Float?,
-    val birthday: String?,
-    val biography: String?,
     val movieId: Int
 )
 

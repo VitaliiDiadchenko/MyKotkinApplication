@@ -21,7 +21,7 @@ interface MovieApi {
     ): ActorsDto
 
     @GET("person/{person_id}")
-    suspend fun getActor(
+    suspend fun getActorDetail(
         @Path("person_id") personId: Int
     ): ActorDetailDto
 }

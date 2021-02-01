@@ -1,14 +1,14 @@
 package com.vitaliidiadchenko.mykotkinapplication.network_module.dto
 
 import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
-import com.vitaliidiadchenko.mykotkinapplication.data.Actor
+import com.vitaliidiadchenko.mykotkinapplication.data.ActorDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-suspend fun convertActorDetailDtoToActor (
+suspend fun convertActorDetailDtoToActorDetail (
     actorDetailDto: ActorDetailDto
-): Actor = withContext(Dispatchers.IO) {
-    Actor(
+): ActorDetail = withContext(Dispatchers.IO) {
+    ActorDetail(
         id = actorDetailDto.id,
         biography = actorDetailDto.biography,
         birthday = actorDetailDto.birthday,
