@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vitaliidiadchenko.mykotkinapplication.App
+import com.vitaliidiadchenko.mykotkinapplication.MainActivity
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 import com.vitaliidiadchenko.mykotkinapplication.R
-import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieViewHolderAdapter
+import com.vitaliidiadchenko.mykotkinapplication.adapter.MovieAdapter
 import com.vitaliidiadchenko.mykotkinapplication.adapter.OnPosterCardClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.State
@@ -36,7 +39,7 @@ class MovieListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recycler_view_list_movies)
-        recyclerView?.adapter = MovieViewHolderAdapter(movieListener)
+        recyclerView?.adapter = MovieAdapter(movieListener)
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
         recyclerView?.hasFixedSize()
         setMovies()
@@ -49,7 +52,7 @@ class MovieListFragment : Fragment() {
 
     private val movieListener = object : OnPosterCardClickListener {
         override fun onClick(movie: Movie) {
-            listener?.goToFragmentMoviesDetails(movie)
+            listener?.goToMoviesDetailsFragment(movie)
         }
     }
 
@@ -60,14 +63,17 @@ class MovieListFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, { status ->
             when (status) {
                 is State.Init, is State.Success -> progressBar?.visibility = View.INVISIBLE
-                is State.Error -> progressBar?.visibility = View.INVISIBLE
+                is State.Error -> {
+                    progressBar?.visibility = View.INVISIBLE
+                    Toast.makeText(App.context(), "Error getting data", Toast.LENGTH_SHORT).show()
+                }
                 is State.Loading -> progressBar?.visibility = View.VISIBLE
             }
         })
     }
 
     private fun updateData(movies : List<Movie>) {
-        (recyclerView?.adapter as? MovieViewHolderAdapter)?.apply {
+        (recyclerView?.adapter as? MovieAdapter)?.apply {
             bindMovies(movies)
         }
     }

@@ -12,7 +12,7 @@ import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
-class MovieViewHolderAdapter(private var onPosterCardClickListener: OnPosterCardClickListener) :
+class MovieAdapter(private var onPosterCardClickListener: OnPosterCardClickListener) :
     RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies = listOf<Movie>()

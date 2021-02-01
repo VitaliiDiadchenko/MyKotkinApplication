@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication.networkModule
+package com.vitaliidiadchenko.mykotkinapplication.network_module
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.vitaliidiadchenko.mykotkinapplication.BuildConfig

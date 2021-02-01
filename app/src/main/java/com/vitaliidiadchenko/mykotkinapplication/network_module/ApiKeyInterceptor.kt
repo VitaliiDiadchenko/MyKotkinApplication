@@ -1,4 +1,4 @@
-package com.vitaliidiadchenko.mykotkinapplication.networkModule
+package com.vitaliidiadchenko.mykotkinapplication.network_module
 
 import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import okhttp3.Interceptor

@@ -15,9 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.adapter.ActorAdapter
+import com.vitaliidiadchenko.mykotkinapplication.adapter.OnActorItemClickListener
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
@@ -28,41 +28,39 @@ class MovieDetailFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory() }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
-
-        view?.findViewById<Button>(R.id.button_back)?.apply {
-            setOnClickListener {
-                listener?.goToFragmentMoviesList()
-            }
-        }
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        recyclerView?.hasFixedSize()
-        arguments?.getParcelable<Movie>("movie")?.let { movie ->
-            viewModel.getActors(movieId = movie.id)
-            viewModel.actors.observe(viewLifecycleOwner, {setupActors(it)})
-            setupView(movie)
-        }
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         listener = context as? FragmentListener
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_movie_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<Button>(R.id.button_back)?.apply {
+            setOnClickListener {
+                listener?.goToMoviesListFragment()
+            }
+        }
+        recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        recyclerView?.hasFixedSize()
+        arguments?.getParcelable<Movie>("movie")?.let { movie ->
+            viewModel.getActors(movieId = movie.id)
+            viewModel.actors.observe(viewLifecycleOwner, { setupActors(it) })
+            setupView(movie)
+        }
+    }
+
+    private val actorListener = object : OnActorItemClickListener {
+        override fun onClick(actor: Actor) {
+            listener?.goToActorDetailFragment(actor)
+        }
     }
 
     private fun setupView(movie: Movie) {
@@ -78,7 +76,7 @@ class MovieDetailFragment : Fragment() {
             it.findViewById<TextView>(R.id.movieTitle).text = movie.title
             it.findViewById<TextView>(R.id.tag_line).text =
                 movie.genres.joinToString(separator = ", ")
-            it.findViewById<TextView>(R.id.storyline).text = movie.overview
+            it.findViewById<TextView>(R.id.description_of_movie).text = movie.overview
             it.findViewById<RatingBar>(R.id.ratingBar).rating = (movie.ratings / 2)
             it.findViewById<TextView>(R.id.textReview).text =
                 resources.getQuantityString(R.plurals.review, 0, 0) //json doesn't have review
@@ -89,7 +87,6 @@ class MovieDetailFragment : Fragment() {
                     visibility = View.VISIBLE
                 }
             }
-
         }
     }
 
@@ -100,10 +97,15 @@ class MovieDetailFragment : Fragment() {
                 it.findViewById<TextView>(R.id.text_cast).isVisible = true
                 it.findViewById<RecyclerView>(R.id.recycler_view_list_actors).apply {
                     isVisible = true
-                    adapter = ActorAdapter(actors)
+                    adapter = ActorAdapter(actors, actorListener)
                 }
             }
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     companion object {

@@ -1,8 +1,10 @@
 package com.vitaliidiadchenko.mykotkinapplication.screens
 
+import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
 interface FragmentListener {
-    fun goToFragmentMoviesDetails(movie: Movie)
-    fun goToFragmentMoviesList()
+    fun goToMoviesDetailsFragment(movie: Movie)
+    fun goToMoviesListFragment()
+    fun goToActorDetailFragment(actor: Actor)
 }

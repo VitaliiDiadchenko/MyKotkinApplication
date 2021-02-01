@@ -2,8 +2,10 @@ package com.vitaliidiadchenko.mykotkinapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
+import com.vitaliidiadchenko.mykotkinapplication.screens.actorDetail.ActorDetailFragment
 import com.vitaliidiadchenko.mykotkinapplication.screens.movieDetail.MovieDetailFragment
 import com.vitaliidiadchenko.mykotkinapplication.screens.movieList.MovieListFragment
 
@@ -17,14 +19,21 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         }
     }
 
-    override fun goToFragmentMoviesDetails(movie: Movie) {
+    override fun goToMoviesDetailsFragment(movie: Movie) {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .add(R.id.main_container, MovieDetailFragment.newInstance(movie))
             .commit()
     }
 
-    override fun goToFragmentMoviesList() {
+    override fun goToActorDetailFragment(actor: Actor) {
+        supportFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .add(R.id.main_container, ActorDetailFragment.newInstance(actor))
+            .commit()
+    }
+
+    override fun goToMoviesListFragment() {
         supportFragmentManager.popBackStack()
     }
 }

@@ -47,7 +47,7 @@
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
 
-    <style name="movie_description__style" parent="header_style">
+    <style name="description_style" parent="header_style">
         <item name="fontFamily">@font/roboto_light</item>
     </style>
 

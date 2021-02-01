@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.vitaliidiadchenko.mykotkinapplication.BuildConfig
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 
 class ActorAdapter(
-    private val listActors: List<Actor>
+    private val listActors: List<Actor>,
+    private var onActorItemClickListener: OnActorItemClickListener
 ) : RecyclerView.Adapter<ActorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
@@ -27,11 +27,14 @@ class ActorAdapter(
 
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
         holder.onBind(listActors[position])
+        holder.itemView.setOnClickListener {
+            onActorItemClickListener.onClick(listActors[position])
+        }
     }
 }
 
 class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val avatar = itemView.findViewById<ImageView>(R.id.img_actor)
+    private val avatar = itemView.findViewById<ImageView>(R.id.image_actor)
     private val name = itemView.findViewById<TextView>(R.id.text_under_img_first_actor)
 
     fun onBind(actor: Actor) {
@@ -50,3 +53,7 @@ class ActorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
+
+interface OnActorItemClickListener {
+    fun onClick(actor: Actor)
+}

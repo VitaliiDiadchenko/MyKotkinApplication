@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_actor"
+            android:layout_width="match_parent"
+            android:layout_height="408dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/background_cover"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <View
+            android:id="@+id/view_gradient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_gradient_detail_poster"
+            app:layout_constraintBottom_toBottomOf="@+id/img_actor"
+            app:layout_constraintEnd_toEndOf="@+id/img_actor"
+            app:layout_constraintStart_toStartOf="@+id/img_actor"
+            app:layout_constraintTop_toTopOf="@+id/img_actor" />
+
+
+        <Button
+            android:id="@+id/button_back_to_movie_detail_fragment"
+            style="@style/button_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/label_back"
+            app:drawableLeftCompat="@drawable/ic_path_to_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_of_actor"
+            style="@style/header_style"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/layout_gap"
+            app:layout_constraintBottom_toBottomOf="@+id/img_actor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_actor"
+            tools:text="Jan Reno" />
+
+        <RatingBar
+            android:id="@+id/rating_bar_actor"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="2dp"
+            android:numStars="6"
+            android:rating="6"
+            android:theme="@style/rating_bar_style"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_of_actor" />
+
+        <TextView
+            android:id="@+id/title_date_of_birth"
+            style="@style/header_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar_actor"
+            app:layout_constraintEnd_toStartOf="@+id/date_of_birth"
+            android:text="@string/date_of_birth" />
+
+        <TextView
+            android:id="@+id/date_of_birth"
+            style="@style/description_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/title_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar_actor"
+            tools:text="1948-07-30" />
+
+        <TextView
+            android:id="@+id/title_place_of_birth"
+            style="@style/header_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_date_of_birth"
+            app:layout_constraintEnd_toStartOf="@+id/place_of_birth"
+            android:text="@string/text_place_of_birth" />
+
+        <TextView
+            android:id="@+id/place_of_birth"
+            style="@style/description_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@+id/title_place_of_birth"
+            app:layout_constraintTop_toBottomOf="@+id/title_date_of_birth"
+            tools:text="Casablanca, Morocco" />
+
+        <TextView
+            android:id="@+id/title_biography"
+            style="@style/header_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_place_of_birth"
+            android:text="@string/text_biography" />
+
+        <TextView
+            android:id="@+id/biography"
+            style="@style/description_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_gap"
+            android:layout_marginEnd="16dp"
+            android:lineSpacingExtra="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_biography"
+            tools:text="@string/example_of_biography" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

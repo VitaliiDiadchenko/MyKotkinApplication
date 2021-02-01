@@ -12,5 +12,6 @@ class App: Application() {
     companion object {
         private var context: Context? = null
         fun context(): Context = context ?: throw IllegalStateException()
+
     }
 }
