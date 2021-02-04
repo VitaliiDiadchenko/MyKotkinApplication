@@ -59,7 +59,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Library to download and show images into ImageViews
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     //json and coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
@@ -86,4 +86,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
+
+    //Work manager
+    implementation 'androidx.work:work-runtime-ktx:2.5.0'
 }
