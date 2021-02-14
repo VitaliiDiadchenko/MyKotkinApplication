@@ -9,7 +9,7 @@ class ApiKeyInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val original: Request = chain.request()
         val request = original.newBuilder()
-            .header("api-key", BuildConfig.API_KEY)
+            .header("api_key", BuildConfig.API_KEY)
             .build()
         return chain.proceed(request)
     }

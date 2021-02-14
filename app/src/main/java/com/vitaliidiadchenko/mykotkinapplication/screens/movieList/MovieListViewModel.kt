@@ -36,7 +36,7 @@ class MovieListViewModel(
             _state.postValue(State.Loading())
             val moviesDto = movieApi.getMovies()
             val genersDto = movieApi.getGenres()
-            val movies = moviesDtoMapping(moviesDto.result, genersDto.genres)
+            val movies = moviesDtoMapping(moviesDto.results, genersDto.genres)
             _moviesData.postValue(movies)
             _state.postValue(State.Success())
             updateMoviesIntoDb(movies)

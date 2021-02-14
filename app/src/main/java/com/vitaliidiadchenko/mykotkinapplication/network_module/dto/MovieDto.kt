@@ -11,7 +11,6 @@ data class MovieDto(
     val poster: String,
     @SerialName("backdrop_path")
     val backdrop: String,
-    val runtime: Int,
     @SerialName("genre_ids")
     val genreIds: List<Int>,
     @SerialName("vote_average")

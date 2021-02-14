@@ -13,7 +13,7 @@ object RetrofitHolder {
 
     private val client: OkHttpClient by lazy {
         OkHttpClient.Builder()
-            .addInterceptor(ApiKeyInterceptor())
+            .addInterceptor(ApiKeyInterceptor()) //For example
             .addInterceptor(
                 HttpLoggingInterceptor()
                     .apply {

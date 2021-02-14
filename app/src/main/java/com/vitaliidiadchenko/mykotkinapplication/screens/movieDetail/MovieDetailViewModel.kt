@@ -13,11 +13,11 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MovieDetailViewModel(
-    private val movieApi: MovieApi,
+    var movieApi: MovieApi,
     private val repository: MovieRepositoryImpl
 ) : ViewModel() {
 
-    private var _actors = MutableLiveData<List<Actor>>()
+    private val _actors = MutableLiveData<List<Actor>>()
     val actors: LiveData<List<Actor>> get() = _actors
 
     fun getActors(movieId: Int) {

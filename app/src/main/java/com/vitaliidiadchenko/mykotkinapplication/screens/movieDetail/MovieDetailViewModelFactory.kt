@@ -2,7 +2,6 @@ package com.vitaliidiadchenko.mykotkinapplication.screens.movieDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.MovieRepositoryImpl
 import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.RepositoryHolder
 import com.vitaliidiadchenko.mykotkinapplication.network_module.RetrofitHolder
 import kotlinx.serialization.ExperimentalSerializationApi

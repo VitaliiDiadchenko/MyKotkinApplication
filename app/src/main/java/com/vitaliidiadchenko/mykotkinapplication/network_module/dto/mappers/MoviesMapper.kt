@@ -20,7 +20,7 @@ suspend fun moviesDtoMapping(
             backdrop = BuildConfig.BASE_IMAGE_URL + BuildConfig.BIG_POSTER_SIZE + moviesDto.backdrop,
             ratings = moviesDto.ratings,
             adult = moviesDto.adult,
-            runtime = moviesDto.runtime,
+            runtime = null,
             genres = moviesDto.genreIds.map {
                 genresMap[it]?.name.toString()
             }

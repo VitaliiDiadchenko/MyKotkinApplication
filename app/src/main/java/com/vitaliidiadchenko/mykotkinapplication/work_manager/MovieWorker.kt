@@ -25,10 +25,12 @@ class MovieWorker(
                 val repository = RepositoryHolder.createRepository()
                 val moviesDto = movieApi.getMovies()
                 val genersDto = movieApi.getGenres()
-                val movies = moviesDtoMapping(moviesDto.result, genersDto.genres)
-                if(movies.isNotEmpty()) repository.updateMoviesIntoDb(movies)
+                val movies = moviesDtoMapping(moviesDto.results, genersDto.genres)
+                if (movies.isNotEmpty()) {
+                    repository.updateMoviesIntoDb(movies)
+                }
                 Result.success()
-            } catch(e: Exception) {
+            } catch (e: Exception) {
                 Result.failure()
             }
         }
