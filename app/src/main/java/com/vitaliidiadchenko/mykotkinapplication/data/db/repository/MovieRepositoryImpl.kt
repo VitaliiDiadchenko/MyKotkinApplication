@@ -52,5 +52,11 @@ class MovieRepositoryImpl : MovieRepository {
                 .insertActorDetail(ActorDetailEntityMapper.toActorDetailEntity(actorDetail))
         }
 
+    override suspend fun getMovieWithMaxRating(): Movie = withContext(Dispatchers.IO) {
+        MovieEntityMapper.toMovie(moviesDb.movieDao().getMovieWithMaxRating())
+    }
 
+    override suspend fun getMovieById(movieId: Int): Movie = withContext(Dispatchers.IO) {
+        MovieEntityMapper.toMovie(moviesDb.movieDao().getMovieById(movieId))
+    }
 }

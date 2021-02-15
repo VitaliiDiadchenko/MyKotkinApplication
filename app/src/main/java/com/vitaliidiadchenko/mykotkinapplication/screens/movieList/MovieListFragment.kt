@@ -52,7 +52,7 @@ class MovieListFragment : Fragment() {
 
     private val movieListener = object : OnPosterCardClickListener {
         override fun onClick(movie: Movie) {
-            listener?.goToMoviesDetailsFragment(movie)
+            listener?.goToMoviesDetailsFragment(movie.id)
         }
     }
 

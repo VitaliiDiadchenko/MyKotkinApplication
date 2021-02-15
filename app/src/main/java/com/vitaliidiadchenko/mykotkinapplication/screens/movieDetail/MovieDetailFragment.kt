@@ -50,10 +50,11 @@ class MovieDetailFragment : Fragment() {
         }
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView?.hasFixedSize()
-        arguments?.getParcelable<Movie>("movie")?.let { movie ->
-            viewModel.getActors(movieId = movie.id)
+        arguments?.getInt("movieId")?.let { movieId ->
+            viewModel.getActors(movieId)
             viewModel.actors.observe(viewLifecycleOwner, { setupActors(it) })
-            setupView(movie)
+            viewModel.getMovie(movieId)
+            viewModel.movie.observe(viewLifecycleOwner, {setupView(it)})
         }
     }
 
@@ -109,10 +110,10 @@ class MovieDetailFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(movie: Movie): MovieDetailFragment =
+        fun newInstance(movieId: Int): MovieDetailFragment =
             MovieDetailFragment().apply {
                 val args = Bundle()
-                args.putParcelable("movie", movie)
+                args.putInt("movieId", movieId)
                 arguments = args
             }
     }

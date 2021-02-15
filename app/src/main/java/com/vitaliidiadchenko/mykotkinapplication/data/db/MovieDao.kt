@@ -9,7 +9,7 @@ import com.vitaliidiadchenko.mykotkinapplication.data.db.entity.MovieEntity
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM movies" )
+    @Query("SELECT * FROM movies")
     suspend fun getAll(): List<MovieEntity>
 
     @Query("DELETE FROM movies")
@@ -17,4 +17,11 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieEntity>)
+
+    @Query("SELECT * FROM movies WHERE ratings = (SELECT MAX(ratings) FROM movies)")
+    suspend fun getMovieWithMaxRating(): MovieEntity
+
+    @Query("SELECT * FROM movies WHERE movieId = :movieId")
+    suspend fun getMovieById(movieId: Int): MovieEntity
+
 }

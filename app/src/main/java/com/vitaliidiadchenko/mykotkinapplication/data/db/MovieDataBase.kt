@@ -8,7 +8,7 @@ import com.vitaliidiadchenko.mykotkinapplication.data.db.entity.ActorDetailEntit
 import com.vitaliidiadchenko.mykotkinapplication.data.db.entity.ActorEntity
 import com.vitaliidiadchenko.mykotkinapplication.data.db.entity.MovieEntity
 
-@Database(entities = [MovieEntity::class, ActorEntity::class, ActorDetailEntity::class], version = 1, exportSchema = false)
+@Database(entities = [MovieEntity::class, ActorEntity::class, ActorDetailEntity::class], version = 2, exportSchema = false)
 abstract class MovieDataBase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -26,5 +26,4 @@ abstract class MovieDataBase : RoomDatabase() {
                 .build()
         }
     }
-
 }

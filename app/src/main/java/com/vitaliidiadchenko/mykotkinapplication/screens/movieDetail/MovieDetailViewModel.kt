@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
+import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.MovieRepositoryImpl
 import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.actorsDtoMapping
 import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
@@ -20,10 +21,20 @@ class MovieDetailViewModel(
     private val _actors = MutableLiveData<List<Actor>>()
     val actors: LiveData<List<Actor>> get() = _actors
 
+    private val _movie = MutableLiveData<Movie>()
+    val movie: LiveData<Movie> get() = _movie
+
     fun getActors(movieId: Int) {
         viewModelScope.launch {
             loadActorsFromDb(movieId)
             loadActorsFromNetwork(movieId)
+        }
+    }
+
+    fun getMovie(movieId: Int){
+        viewModelScope.launch {
+            val movie = repository.getMovieById(movieId)
+            _movie.postValue(movie)
         }
     }
 

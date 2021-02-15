@@ -4,7 +4,7 @@ import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 
 interface FragmentListener {
-    fun goToMoviesDetailsFragment(movie: Movie)
+    fun goToMoviesDetailsFragment(movieId: Int)
     fun goToMoviesListFragment()
     fun goToActorDetailFragment(actor: Actor)
 }

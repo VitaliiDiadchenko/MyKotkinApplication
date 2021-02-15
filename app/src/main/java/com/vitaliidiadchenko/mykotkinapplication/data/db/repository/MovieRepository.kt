@@ -18,4 +18,8 @@ interface MovieRepository {
 
     suspend fun updateActorDetailIntoDb(actorDetail: ActorDetail)
 
+    suspend fun getMovieWithMaxRating(): Movie
+
+    suspend fun getMovieById(movieId: Int): Movie
+
 }

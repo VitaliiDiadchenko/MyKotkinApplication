@@ -3,6 +3,7 @@ package com.vitaliidiadchenko.mykotkinapplication.work_manager
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.vitaliidiadchenko.mykotkinapplication.App
 import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.RepositoryHolder
 import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
 import com.vitaliidiadchenko.mykotkinapplication.network_module.RetrofitHolder
@@ -17,6 +18,8 @@ class MovieWorker(
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
 
+    private val movieNotification by lazy { BuildNotification(context = context) }
+
     @ExperimentalSerializationApi
     override suspend fun doWork(): Result {
         return withContext(Dispatchers.IO) {
@@ -29,6 +32,8 @@ class MovieWorker(
                 if (movies.isNotEmpty()) {
                     repository.updateMoviesIntoDb(movies)
                 }
+                val movie = repository.getMovieWithMaxRating()
+                movieNotification.showNotification(movie)
                 Result.success()
             } catch (e: Exception) {
                 Result.failure()

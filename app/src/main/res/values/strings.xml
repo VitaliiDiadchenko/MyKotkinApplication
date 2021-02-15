@@ -26,4 +26,8 @@
         <item quantity="other">%d min</item>
     </plurals>
 
+
+    <string name="channel_top_movie">Top movie</string>
+    <string name="channel_top_movie_description">Top rating movie</string>
+
 </resources>
