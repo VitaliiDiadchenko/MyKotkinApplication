@@ -1,6 +1,5 @@
 package com.vitaliidiadchenko.mykotkinapplication.screens.actorDetail
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,17 +14,10 @@ import com.bumptech.glide.Glide
 import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.ActorDetail
-import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 
 class ActorDetailFragment : Fragment() {
 
-    private var listener: FragmentListener? = null
     private val viewModel: ActorDetailViewModel by viewModels { ActorDetailViewModelFactory() }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = context as? FragmentListener
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,11 +54,6 @@ class ActorDetailFragment : Fragment() {
             it.findViewById<TextView>(R.id.place_of_birth).text = actorDetail.placeOfBirth
             it.findViewById<TextView>(R.id.biography).text = actorDetail.biography
         }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 
     companion object {

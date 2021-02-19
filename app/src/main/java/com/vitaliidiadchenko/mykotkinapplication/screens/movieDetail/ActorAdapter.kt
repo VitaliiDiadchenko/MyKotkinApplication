@@ -12,9 +12,10 @@ import com.vitaliidiadchenko.mykotkinapplication.R
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 
 class ActorAdapter(
-    private val listActors: List<Actor>,
-    private var onActorItemClickListener: OnActorItemClickListener
+    private val onActorItemClickListener: OnActorItemClickListener
 ) : RecyclerView.Adapter<ActorViewHolder>() {
+
+    private var listActors = listOf<Actor>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         return ActorViewHolder(
@@ -23,13 +24,18 @@ class ActorAdapter(
         )
     }
 
-    override fun getItemCount(): Int = listActors.size
-
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
         holder.onBind(listActors[position])
         holder.itemView.setOnClickListener {
             onActorItemClickListener.onClick(listActors[position])
         }
+    }
+
+    override fun getItemCount(): Int = listActors.size
+
+    fun onBindListActor(newActorsList: List<Actor>) {
+        listActors = newActorsList
+        notifyDataSetChanged()
     }
 }
 

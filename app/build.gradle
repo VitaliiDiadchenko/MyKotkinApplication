@@ -23,7 +23,7 @@ android {
         buildConfigField "String", "API_KEY","\"727840eeb047197730d7b0a573d0a073\""
         buildConfigField "String", "SMALL_POSTER_SIZE","\"w185\""
         buildConfigField "String", "BIG_POSTER_SIZE","\"w780\""
-        buildConfigField "String", "ACTOR_AVATAR_SIZE","\"w342\""
+        buildConfigField "String", "ACTOR_AVATAR_SIZE","\"w185\""
     }
 
     buildTypes {

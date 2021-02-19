@@ -3,7 +3,6 @@ package com.vitaliidiadchenko.mykotkinapplication.work_manager
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.vitaliidiadchenko.mykotkinapplication.App
 import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.RepositoryHolder
 import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
 import com.vitaliidiadchenko.mykotkinapplication.network_module.RetrofitHolder

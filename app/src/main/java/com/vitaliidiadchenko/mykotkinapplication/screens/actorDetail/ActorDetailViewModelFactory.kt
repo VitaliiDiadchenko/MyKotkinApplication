@@ -11,7 +11,7 @@ class ActorDetailViewModelFactory : ViewModelProvider.Factory {
     @ExperimentalSerializationApi
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when (modelClass) {
-        ActorDetailViewModel::javaClass -> ActorDetailViewModel(
+        ActorDetailViewModel::class.java -> ActorDetailViewModel(
             movieApi = RetrofitHolder.retrofit.create(),
             repository = RepositoryHolder.createRepository()
         )

@@ -23,10 +23,6 @@ class BuildNotification(private val context: Context) {
     private val notificationManagerCompat: NotificationManagerCompat =
         NotificationManagerCompat.from(context)
 
-    init {
-        initialize()
-    }
-
     private fun initialize() {
         if (notificationManagerCompat.getNotificationChannel(CHANNEL_TOP_MOVIE) == null) {
             notificationManagerCompat.createNotificationChannel(
@@ -41,6 +37,8 @@ class BuildNotification(private val context: Context) {
     }
 
     fun showNotification(movie: Movie) {
+        initialize()
+
         val contentUri = "https://www.themoviedb.org/movie/${movie.id}".toUri()
 
         val notification = NotificationCompat.Builder(context, CHANNEL_TOP_MOVIE)

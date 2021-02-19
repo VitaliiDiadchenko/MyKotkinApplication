@@ -12,9 +12,10 @@ class MovieDetailViewModelFactory : ViewModelProvider.Factory {
     @ExperimentalSerializationApi
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when (modelClass) {
-        MovieDetailViewModel::javaClass -> MovieDetailViewModel(
+        MovieDetailViewModel::class.java -> MovieDetailViewModel(
             movieApi = RetrofitHolder.retrofit.create(),
-            repository = RepositoryHolder.createRepository())
+            repository = RepositoryHolder.createRepository()
+        )
         else -> throw IllegalArgumentException("$modelClass is not registered ViewModel")
     } as T
 }

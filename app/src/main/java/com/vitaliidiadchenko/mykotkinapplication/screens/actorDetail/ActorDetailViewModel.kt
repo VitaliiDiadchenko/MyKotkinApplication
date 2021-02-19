@@ -5,11 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vitaliidiadchenko.mykotkinapplication.data.Actor
 import com.vitaliidiadchenko.mykotkinapplication.data.ActorDetail
 import com.vitaliidiadchenko.mykotkinapplication.data.db.repository.MovieRepositoryImpl
 import com.vitaliidiadchenko.mykotkinapplication.network_module.MovieApi
-import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.convertActorDetailDtoToActorDetail
+import com.vitaliidiadchenko.mykotkinapplication.network_module.dto.mappers.convertActorDetailDtoToActorDetail
 import kotlinx.coroutines.launch
 import java.lang.Exception
 

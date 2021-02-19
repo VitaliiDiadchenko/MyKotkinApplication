@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
 import com.vitaliidiadchenko.mykotkinapplication.data.Actor
-import com.vitaliidiadchenko.mykotkinapplication.data.Movie
 import com.vitaliidiadchenko.mykotkinapplication.screens.FragmentListener
 import com.vitaliidiadchenko.mykotkinapplication.screens.actorDetail.ActorDetailFragment
 import com.vitaliidiadchenko.mykotkinapplication.screens.movieDetail.MovieDetailFragment

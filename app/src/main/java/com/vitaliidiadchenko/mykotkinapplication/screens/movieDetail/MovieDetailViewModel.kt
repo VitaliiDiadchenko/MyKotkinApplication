@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MovieDetailViewModel(
-    var movieApi: MovieApi,
+    private val movieApi: MovieApi,
     private val repository: MovieRepositoryImpl
 ) : ViewModel() {
 

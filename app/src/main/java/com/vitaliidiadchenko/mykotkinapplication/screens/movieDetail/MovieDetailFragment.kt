@@ -48,13 +48,15 @@ class MovieDetailFragment : Fragment() {
                 listener?.goToMoviesListFragment()
             }
         }
+        recyclerView = view.findViewById(R.id.recycler_view_list_actors)
+        recyclerView?.adapter = ActorAdapter(actorListener)
         recyclerView?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView?.hasFixedSize()
         arguments?.getInt("movieId")?.let { movieId ->
             viewModel.getActors(movieId)
             viewModel.actors.observe(viewLifecycleOwner, { setupActors(it) })
             viewModel.getMovie(movieId)
-            viewModel.movie.observe(viewLifecycleOwner, {setupView(it)})
+            viewModel.movie.observe(viewLifecycleOwner, { setupView(it) })
         }
     }
 
@@ -94,12 +96,8 @@ class MovieDetailFragment : Fragment() {
     //set actor's images to recyclerView
     private fun setupActors(actors: List<Actor>) {
         if (actors.isNotEmpty()) {
-            view?.let {
-                it.findViewById<TextView>(R.id.text_cast).isVisible = true
-                it.findViewById<RecyclerView>(R.id.recycler_view_list_actors).apply {
-                    isVisible = true
-                    adapter = ActorAdapter(actors, actorListener)
-                }
+            (recyclerView?.adapter as? ActorAdapter)?.apply {
+                onBindListActor(actors)
             }
         }
     }
