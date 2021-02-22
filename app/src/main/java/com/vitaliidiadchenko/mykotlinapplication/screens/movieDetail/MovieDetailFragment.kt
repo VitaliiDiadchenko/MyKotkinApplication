@@ -1,6 +1,7 @@
 package com.vitaliidiadchenko.mykotlinapplication.screens.movieDetail
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.transition.MaterialContainerTransform
 import com.vitaliidiadchenko.mykotlinapplication.R
 import com.vitaliidiadchenko.mykotlinapplication.adapter.ActorAdapter
 import com.vitaliidiadchenko.mykotlinapplication.adapter.OnActorItemClickListener
@@ -37,6 +39,7 @@ class MovieDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setAnimation()
         return inflater.inflate(R.layout.fragment_movie_detail, container, false)
     }
 
@@ -101,6 +104,14 @@ class MovieDetailFragment : Fragment() {
         }
     }
 
+    private fun setAnimation() {
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.main_container
+            duration = ANIMATION_DURATION
+            scrimColor = Color.TRANSPARENT
+        }
+    }
+
     override fun onDetach() {
         super.onDetach()
         listener = null
@@ -113,5 +124,6 @@ class MovieDetailFragment : Fragment() {
                 args.putInt("movieId", movieId)
                 arguments = args
             }
+        const val ANIMATION_DURATION = 30_000L
     }
 }

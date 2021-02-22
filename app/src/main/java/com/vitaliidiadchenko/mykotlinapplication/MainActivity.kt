@@ -3,6 +3,7 @@ package com.vitaliidiadchenko.mykotlinapplication
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
 import com.vitaliidiadchenko.mykotlinapplication.data.Actor
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), FragmentListener {
             intent?.let(::handleIntent)
         }
     }
+
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent != null) {
@@ -49,10 +51,13 @@ class MainActivity : AppCompatActivity(), FragmentListener {
             }
         }
     }
+
     override fun goToMoviesDetailsFragment(movieId: Int) {
+        val view = findViewById<CardView>(R.id.card_movie)
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .add(R.id.main_container, MovieDetailFragment.newInstance(movieId))
+            .addSharedElement(view, App.context().getString(R.string.card_view_item_transition))//
             .commit()
     }
 
