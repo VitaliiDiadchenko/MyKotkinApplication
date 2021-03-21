@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), FragmentListener {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .add(R.id.main_container, MovieDetailFragment.newInstance(movieId))
-            .addSharedElement(view, App.context().getString(R.string.card_view_item_transition))//
+            .addSharedElement(view, App.context().getString(R.string.card_view_item_transition))
             .commit()
     }
 
