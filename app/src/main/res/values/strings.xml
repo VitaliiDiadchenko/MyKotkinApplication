@@ -29,5 +29,7 @@
 
     <string name="channel_top_movie">Top movie</string>
     <string name="channel_top_movie_description">Top rating movie</string>
+    <string name="card_view_item_transition">card_view_item_transition</string>
+    <string name="movie_detail_fragment_transition">movie_detail_fragment_transition</string>
 
 </resources>
