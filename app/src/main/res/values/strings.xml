@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyKotlinApplication</string>
+    <string name="app_name">MyKotkinApplication</string>
     <string name="background_cover">Background_cover</string>
     <string name="label_back">Back</string>
     <string name="path_to_back">path_to_back</string>

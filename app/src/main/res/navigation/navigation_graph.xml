@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/movieListFragment">
+
+    <fragment
+        android:id="@+id/movieListFragment"
+        android:name="com.vitaliidiadchenko.mykotkinapplication.screens.movieList.MovieListFragment"
+        tools:layout="@layout/fragment_movies_list" >
+        <action
+            android:id="@+id/action_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.vitaliidiadchenko.mykotkinapplication.screens.movieDetail.MovieDetailFragment"
+        tools:layout="@layout/fragment_movie_detail"  >
+        <action
+            android:id="@+id/action_to_actorDetailFragment"
+            app:destination="@id/actorDetailFragment" />
+        <argument
+            android:name="selected_movie"
+            app:argType="com.vitaliidiadchenko.mykotkinapplication.data.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorDetailFragment"
+        android:name="com.vitaliidiadchenko.mykotkinapplication.screens.actorDetail.ActorDetailFragment"
+        tools:layout="@layout/actor_fragment" >
+        <argument
+            android:name="selected_actor"
+            app:argType="com.vitaliidiadchenko.mykotkinapplication.data.Actor" />
+    </fragment>
+
+</navigation>
